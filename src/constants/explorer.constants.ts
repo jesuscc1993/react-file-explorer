@@ -25,8 +25,6 @@ export const imageExtensions = [
   'PSD',
   'RAW',
   'SVG',
-  'TIF',
-  'TIFF',
   'WEBP',
 ];
 
