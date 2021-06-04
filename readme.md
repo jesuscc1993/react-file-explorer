@@ -14,7 +14,7 @@ TypeScript
 
 ## Requirements
 
-This project requires node-file-explorer running as a server.
+This project requires [node-file-explorer](https://github.com/jesuscc1993/node-file-explorer) running as a server.
 
 ## TODO
 
