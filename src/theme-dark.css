@@ -1,0 +1,9 @@
+:root {
+  --c-bg: #111;
+  --c-border: #222;
+  --c-fg: #ddd;
+  --c-input-bg: #222;
+  --c-input-border-active: #666;
+  --c-input-border-hover: #444;
+  --c-input-border: #333;
+}

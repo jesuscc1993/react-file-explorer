@@ -1,0 +1,73 @@
+:root {
+  --font-size: 16px;
+  --preview-size: 256px;
+  --thumbnail-size: 128px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--c-fg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: var(--font-size);
+  margin: 0;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+button {
+  cursor: pointer;
+}
+
+button,
+input {
+  background-color: var(--c-input-bg);
+  border: 1px solid var(--c-input-border);
+  color: var(--c-fg);
+  outline: none;
+}
+button:hover,
+input:hover {
+  border-color: var(--c-input-border-hover);
+}
+button:active,
+input:focus {
+  border-color: var(--c-input-border-active);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.pane {
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+  padding: 12px;
+}
+
+.sidebar {
+  width: 282px;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+.no-margin-top {
+  margin-top: 0;
+}

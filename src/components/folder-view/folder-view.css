@@ -1,0 +1,39 @@
+.folder-view {
+  flex: 1;
+}
+
+.folder-view .files {
+  display: flex;
+  flex-wrap: wrap;
+
+  /* display: grid;
+  justify-content: space-around;
+  grid-template-columns: repeat(auto-fill, 152px);
+  grid-gap: 0; */
+}
+
+.folder-view .file {
+  display: inline-block;
+  padding: 12px;
+  width: 152px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.folder-view .file:hover {
+  background: var(--c-input-bg);
+  border: 1px solid var(--c-input-border);
+}
+
+.folder-view .file-icon {
+  height: var(--thumbnail-size);
+  width: var(--thumbnail-size);
+}
+
+.folder-view .file-icon .material-icons {
+  font-size: var(--thumbnail-size);
+}
+
+.folder-view .label {
+  text-align: center;
+  overflow-wrap: break-word;
+}

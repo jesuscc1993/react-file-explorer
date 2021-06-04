@@ -1,0 +1,17 @@
+.file-icon {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.file-icon .icon {
+  height: auto;
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  border: 1px solid #0001;
+}
+
+.file-icon .material-icons {
+  text-shadow: 0 0 8px #0001;
+}
