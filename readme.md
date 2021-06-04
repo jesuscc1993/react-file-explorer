@@ -18,4 +18,5 @@ This project requires [node-file-explorer](https://github.com/jesuscc1993/node-f
 
 ## TODO
 
-Extract hardcoded values to ENV.
+- Extract hardcoded values to ENV.
+- Implement favourites on left sidebar.
