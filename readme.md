@@ -20,3 +20,4 @@ This project requires [node-file-explorer](https://github.com/jesuscc1993/node-f
 
 - Extract hardcoded values to ENV.
 - Implement favourites on left sidebar.
+- Implement list view, alternative to the current grid view.
