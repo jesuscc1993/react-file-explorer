@@ -1,6 +1,10 @@
 import {
-  audioExtensions, directorySeparator, extensionSeparator, imageExtensions, pathServer, sizes,
-  videoExtensions,
+  audioExtensions,
+  directorySeparator,
+  extensionSeparator,
+  imageExtensions,
+  sizes,
+  videoExtensions
 } from '../constants/explorer.constants';
 import { FileType } from '../types/file.types';
 import { PathStats } from '../types/path.types';
@@ -22,7 +26,9 @@ export const getIconForFileType = (fileType: FileType) => {
 };
 
 export const getFileUrl = (file: PathStats) => {
-  return `${pathServer}/file/${encodeURIComponent(file.absolutePath)}`;
+  return `${process.env.REACT_APP_SERVER_URL}/file/${encodeURIComponent(
+    file.absolutePath,
+  )}`;
 };
 
 export const getIconForName = (name: string) => {

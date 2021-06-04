@@ -19,6 +19,7 @@
   cursor: pointer;
   border: 1px solid transparent;
 }
+.folder-view .file.selected,
 .folder-view .file:hover {
   background: var(--c-input-bg);
   border: 1px solid var(--c-input-border);

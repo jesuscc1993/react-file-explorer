@@ -71,3 +71,24 @@ input:focus {
 .no-margin-top {
   margin-top: 0;
 }
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-track-piece {
+  background: var(--c-bg) !important;
+}
+
+::-webkit-scrollbar {
+  width: 17px !important;
+  height: 17px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--c-input-bg);
+  border: 3px solid var(--c-bg) !important;
+  border-radius: 8px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-input-border);
+}

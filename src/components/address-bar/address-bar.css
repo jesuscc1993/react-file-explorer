@@ -1,13 +1,18 @@
 .address-bar {
+  --button-size: 32px;
+  --padding: 12px;
   display: flex;
 }
 
 .address-bar .address-input {
   flex: 1;
+  margin: 0 4px;
 }
 
 .address-bar button {
-  height: 32px;
+  border-radius: 50%;
+  height: var(--button-size);
+  width: var(--button-size);
 }
 
 .address-bar button.back {
@@ -17,12 +22,18 @@
   border-radius: 0 50% 50% 0;
 }
 .address-bar button.up {
-  border-radius: 50%;
-  margin: 0 8px 0 4px;
+  margin: 0 4px;
 }
 
 .address-bar input {
   border-radius: 16px;
-  padding: 0 12px;
+  padding: 0 var(--padding);
   font-size: var(--font-size);
+}
+
+.address-bar .separator {
+  height: var(--button-size);
+  width: 1px;
+  margin: 0 var(--padding);
+  background: var(--c-input-border);
 }

@@ -1,6 +1,3 @@
-// TODO extract to ENV
-export const pathServer = 'http://localhost:3140';
-
 export const directorySeparator = '/';
 export const extensionSeparator = '.';
 
@@ -38,6 +35,7 @@ export const videoExtensions = [
   'FLV',
   'M4P',
   'M4V',
+  'MKV',
   'MOV',
   'MP2',
   'MP4',

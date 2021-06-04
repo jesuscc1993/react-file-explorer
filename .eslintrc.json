@@ -33,6 +33,7 @@
         "varsIgnorePattern": "^_"
       }
     ],
+    "no-debugger": "warn",
     "react/prop-types": "off"
   },
   "settings": {

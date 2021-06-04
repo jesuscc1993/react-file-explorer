@@ -1,4 +1,3 @@
-import { pathServer } from '../constants/explorer.constants';
 import { PathReadOptions, PathResponseDto } from '../types/path.types';
 import { httpService } from './http.service';
 
@@ -16,20 +15,24 @@ type PathRequestDto = {
 };
 
 const getFile = (path: string) => {
-  return httpService.post<PathResponseDto>(`${pathServer}/file`, {
+  return httpService.post<PathResponseDto>(`${getServerUrl()}/file`, {
     path,
   } as FileRequestDto);
 };
 
 const getPathFiles = (path: string, options?: PathOptions) => {
-  return httpService.post<PathResponseDto>(`${pathServer}/path`, {
+  return httpService.post<PathResponseDto>(`${getServerUrl()}/path`, {
     options,
     path,
   } as PathRequestDto);
 };
 
+const getServerUrl = () => {
+  return process.env.REACT_APP_SERVER_URL;
+};
+
 const openFile = (path: string) => {
-  return httpService.post<PathResponseDto>(`${pathServer}/open-file`, {
+  return httpService.post<PathResponseDto>(`${getServerUrl()}/open-file`, {
     path,
   } as FileRequestDto);
 };

@@ -1,0 +1,14 @@
+.app-explorer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-explorer .middle-section {
+  display: flex;
+  flex: 1;
+  max-height: calc(100vh - 104px);
+}
+.app-explorer .middle-section > * {
+  overflow: auto;
+}

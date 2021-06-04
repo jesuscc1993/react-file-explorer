@@ -1,10 +1,18 @@
 import './address-bar.css';
 
-import React, { ChangeEvent, FC, KeyboardEvent, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent,
+  FC,
+  KeyboardEvent,
+  useEffect,
+  useState
+} from 'react';
 import { useHistory } from 'react-router';
 
 import { directorySeparator } from '../../constants/explorer.constants';
+import { getSanitizedAddress } from '../../domain/os.domain';
 import { countInstancesInString } from '../../domain/strings.domain';
+import { useAppContext } from '../../hooks/use-app-context.hook';
 
 type Props = {
   path: string;
@@ -12,6 +20,7 @@ type Props = {
 
 export const AppAddressBar: FC<Props> = ({ path }) => {
   const history = useHistory();
+  const { appState, setAppState } = useAppContext();
 
   const [formAddress, setFormAddress] = useState(path);
 
@@ -23,7 +32,9 @@ export const AppAddressBar: FC<Props> = ({ path }) => {
 
   const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      history.push(`/explorer?path=${formAddress}`);
+      const newAddress = getSanitizedAddress(formAddress);
+      setFormAddress(newAddress);
+      history.push(`/explorer?path=${getSanitizedAddress(formAddress)}`);
     }
   };
 
@@ -49,16 +60,34 @@ export const AppAddressBar: FC<Props> = ({ path }) => {
     }
   };
 
+  const toggleLeftSidebar = () => {
+    setAppState({ ...appState, leftSidebar: !appState.leftSidebar });
+  };
+
+  const toggleRightSidebar = () => {
+    setAppState({ ...appState, rightSidebar: !appState.rightSidebar });
+  };
+
   return (
     <div className="address-bar pane">
-      <button className="back" onClick={history.goBack}>
+      <button title="Toggle left sidebar" onClick={toggleLeftSidebar}>
+        <span className="material-icons">table_chart</span>
+      </button>
+
+      <span className="separator" />
+
+      <button className="back" title="Go back" onClick={history.goBack}>
         <span className="material-icons">arrow_back</span>
       </button>
-      <button className="forward" onClick={history.goForward}>
+      <button
+        className="forward"
+        title="Go forward"
+        onClick={history.goForward}
+      >
         <span className="material-icons">arrow_forward</span>
       </button>
 
-      <button className="up" onClick={navigateUp}>
+      <button className="up" title="Go up" onClick={navigateUp}>
         <span className="material-icons">arrow_upward</span>
       </button>
 
@@ -68,6 +97,12 @@ export const AppAddressBar: FC<Props> = ({ path }) => {
         onChange={onChange}
         onKeyDown={onKeyDown}
       />
+
+      <span className="separator" />
+
+      <button title="Toggle right sidebar" onClick={toggleRightSidebar}>
+        <span className="material-icons">table_chart</span>
+      </button>
     </div>
   );
 };
