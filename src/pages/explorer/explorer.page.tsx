@@ -69,7 +69,9 @@ export const AppExplorer: FC = () => {
         {appState.rightSidebar && <AppDetailView file={selectedFile} />}
       </div>
 
-      <div className="pane">{selectedFile?.absolutePath || 'No selection'}</div>
+      <div className="footer-section pane">
+        {selectedFile?.absolutePath || 'No selection'}
+      </div>
     </div>
   );
 };

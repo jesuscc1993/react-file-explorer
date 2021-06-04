@@ -12,3 +12,7 @@
 .app-explorer .middle-section > * {
   overflow: auto;
 }
+
+.app-explorer .footer-section {
+  height: 48px;
+}
