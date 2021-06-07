@@ -1,5 +1,9 @@
 :root {
   --font-size: 16px;
+  --footer-height: 40px;
+  --header-height: 48px;
+  --line-height: 20px;
+  --pane-padding: 12px;
   --preview-size: 256px;
   --thumbnail-size: 128px;
 }
@@ -14,6 +18,7 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   font-size: var(--font-size);
+  line-height: var(--line-height);
   margin: 0;
 
   /* Support for all WebKit browsers. */
@@ -57,7 +62,11 @@ input:focus {
 .pane {
   background: var(--c-bg);
   border: 1px solid var(--c-border);
-  padding: 12px;
+  padding: var(--pane-padding);
+}
+
+.pane-title {
+  margin: 0 0 var(--pane-padding);
 }
 
 .sidebar {
@@ -66,10 +75,6 @@ input:focus {
 
 .centered-text {
   text-align: center;
-}
-
-.no-margin-top {
-  margin-top: 0;
 }
 
 ::-webkit-scrollbar,
@@ -91,4 +96,17 @@ input:focus {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--c-input-border);
+}
+
+/* libraries */
+.react-contextmenu-item {
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+  padding: var(--pane-padding);
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+.react-contextmenu-item:hover {
+  background: var(--c-input-bg);
+  border-color: var(--c-input-border);
 }

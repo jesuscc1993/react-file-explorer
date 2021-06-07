@@ -1,11 +1,11 @@
-import './address-bar.css';
+import './explorer-header.component.css';
 
 import React, {
   ChangeEvent,
   FC,
   KeyboardEvent,
   useEffect,
-  useState
+  useState,
 } from 'react';
 import { useHistory } from 'react-router';
 
@@ -18,7 +18,7 @@ type Props = {
   path: string;
 };
 
-export const AppAddressBar: FC<Props> = ({ path }) => {
+export const AppExplorerHeader: FC<Props> = ({ path }) => {
   const history = useHistory();
   const { appState, setAppState } = useAppContext();
 

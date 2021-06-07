@@ -1,7 +1,10 @@
 .address-bar {
-  --button-size: 32px;
+  --button-size: 28px;
   --padding: 12px;
+  align-items: center;
+  border-width: 0;
   display: flex;
+  height: var(--header-height);
 }
 
 .address-bar .address-input {
@@ -20,6 +23,7 @@
 }
 .address-bar button.forward {
   border-radius: 0 50% 50% 0;
+  margin-left: -1px;
 }
 .address-bar button.up {
   margin: 0 4px;
@@ -27,8 +31,9 @@
 
 .address-bar input {
   border-radius: 16px;
-  padding: 0 var(--padding);
   font-size: var(--font-size);
+  height: var(--button-size);
+  padding: 0 var(--padding);
 }
 
 .address-bar .separator {

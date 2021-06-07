@@ -4,30 +4,29 @@ import {
   extensionSeparator,
   imageExtensions,
   sizes,
-  videoExtensions
+  videoExtensions,
 } from '../constants/explorer.constants';
-import { FileType } from '../types/file.types';
-import { PathStats } from '../types/path.types';
+import { FileSystemItem, FileSystemItemType } from '../types/file-system.types';
 
-export const getFileType = (file: PathStats): FileType => {
-  if (file.isDirectory) return FileType.Folder;
+export const getItemType = (item: FileSystemItem): FileSystemItemType => {
+  if (item.isDirectory) return FileSystemItemType.Folder;
 
-  const fileExtension = getFileExtension(file)?.toUpperCase();
-  if (!fileExtension) return FileType.File;
+  const fileExtension = getFileExtension(item)?.toUpperCase();
+  if (!fileExtension) return FileSystemItemType.File;
 
-  if (audioExtensions.includes(fileExtension)) return FileType.Audio;
-  if (imageExtensions.includes(fileExtension)) return FileType.Image;
-  if (videoExtensions.includes(fileExtension)) return FileType.Video;
-  return FileType.File;
+  if (audioExtensions.includes(fileExtension)) return FileSystemItemType.Audio;
+  if (imageExtensions.includes(fileExtension)) return FileSystemItemType.Image;
+  if (videoExtensions.includes(fileExtension)) return FileSystemItemType.Video;
+  return FileSystemItemType.File;
 };
 
-export const getIconForFileType = (fileType: FileType) => {
+export const getIconForFileType = (fileType: FileSystemItemType) => {
   return iconsByFileType[fileType];
 };
 
-export const getFileUrl = (file: PathStats) => {
+export const getFileUrl = (item: FileSystemItem) => {
   return `${process.env.REACT_APP_SERVER_URL}/file/${encodeURIComponent(
-    file.absolutePath,
+    item.absolutePath,
   )}`;
 };
 
@@ -35,7 +34,7 @@ export const getIconForName = (name: string) => {
   return `${process.env.PUBLIC_URL}/assets/images/file-types/${name}.png`;
 };
 
-export const getFileExtension = ({ name }: PathStats) => {
+export const getFileExtension = ({ name }: FileSystemItem) => {
   return name.includes(extensionSeparator)
     ? name.split(extensionSeparator).pop()
     : undefined;
@@ -51,10 +50,10 @@ export const getFolderName = (path: string) => {
   return path.split(directorySeparator).pop();
 };
 
-const iconsByFileType: Record<FileType, string> = {
-  [FileType.Audio]: 'music_note',
-  [FileType.File]: 'description',
-  [FileType.Folder]: 'folder',
-  [FileType.Image]: 'image',
-  [FileType.Video]: 'movie',
+const iconsByFileType: Record<FileSystemItemType, string> = {
+  [FileSystemItemType.Audio]: 'music_note',
+  [FileSystemItemType.File]: 'description',
+  [FileSystemItemType.Folder]: 'folder',
+  [FileSystemItemType.Image]: 'image',
+  [FileSystemItemType.Video]: 'movie',
 };

@@ -19,5 +19,5 @@ This project requires [node-file-explorer](https://github.com/jesuscc1993/node-f
 ## TODO
 
 - Extract hardcoded values to ENV.
-- Implement favourites on left sidebar.
+- Implement manual favourites sorting.
 - Implement list view, alternative to the current grid view.

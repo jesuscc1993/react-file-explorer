@@ -1,0 +1,6 @@
+.app-explorer .footer-section {
+  align-items: center;
+  border-width: 0;
+  display: flex;
+  height: var(--footer-height);
+}

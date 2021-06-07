@@ -1,14 +1,17 @@
+.detail-view {
+  border-width: 1px 0 1px 1px;
+}
+
 .detail-view .value-pair > :last-child {
   float: right;
-  font-family: monospace;
   margin-left: 4px;
 }
 
-.detail-view .file-icon {
+.detail-view .item-icon {
   height: var(--preview-size);
   width: var(--preview-size);
 }
 
-.detail-view .file-icon .material-icons {
+.detail-view .item-icon .material-icons {
   font-size: var(--preview-size);
 }

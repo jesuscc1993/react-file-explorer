@@ -1,3 +1,5 @@
+export const appId = process.env.REACT_APP_ID;
+
 export const directorySeparator = '/';
 export const extensionSeparator = '.';
 
@@ -19,10 +21,8 @@ export const imageExtensions = [
   'HEIF',
   'INDD',
   'JPEG',
-  'ICNS',
   'JPG',
   'PNG',
-  'PSD',
   'RAW',
   'SVG',
   'WEBP',

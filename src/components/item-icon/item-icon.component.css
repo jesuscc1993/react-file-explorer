@@ -1,17 +1,19 @@
-.file-icon {
+.item-icon {
   align-items: center;
   display: flex;
   justify-content: center;
 }
 
-.file-icon .icon {
+.item-icon .icon {
   height: auto;
   max-height: 100%;
   max-width: 100%;
   width: auto;
-  border: 1px solid #0001;
+}
+.item-icon .icon.image {
+  background: url('/src/assets/images/checkers.png');
 }
 
-.file-icon .material-icons {
+.item-icon .material-icons {
   text-shadow: 0 0 8px #0001;
 }

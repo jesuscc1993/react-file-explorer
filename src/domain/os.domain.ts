@@ -1,3 +1,5 @@
+import { directorySeparator } from '../constants/explorer.constants';
+
 export enum Os {
   Windows = 'Windows',
   Linux = 'Linux',
@@ -17,7 +19,12 @@ export const getOs = () => {
 };
 
 export const getSanitizedAddress = (address: string) => {
-  return address.replace(/\\/g, '/').replace(/\/+/g, '/').replace(/\/$/, '');
+  return address !== getStartingPath(getOs())
+    ? address
+        .replace(/\\/g, directorySeparator)
+        .replace(/\/+/g, directorySeparator)
+        .replace(/\/$/, '')
+    : address;
 };
 
 export const getStartingPath = (os: Os) => osStartingPaths[os];

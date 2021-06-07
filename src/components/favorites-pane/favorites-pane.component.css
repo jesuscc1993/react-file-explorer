@@ -1,0 +1,18 @@
+.favorites-view {
+  border-width: 1px 1px 1px 0;
+  padding: 0;
+}
+.favorites-view .pane-title {
+  margin: 0;
+  padding: var(--pane-padding);
+}
+
+.favorites-view .favorite {
+  cursor: pointer;
+  padding: 6px var(--pane-padding);
+  user-select: none;
+}
+.favorites-view .favorite:hover {
+  background: var(--c-input-bg);
+  border-color: var(--c-input-border);
+}

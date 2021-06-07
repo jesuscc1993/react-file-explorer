@@ -7,11 +7,11 @@ import {
   BrowserRouter as Router,
   Redirect,
   Route,
-  Switch
+  Switch,
 } from 'react-router-dom';
 
 import { AppContextProvider } from './hooks/use-app-context.hook';
-import { AppExplorer } from './pages/explorer/explorer.page';
+import { AppExplorerPage } from './pages/explorer/explorer.page';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -22,7 +22,7 @@ ReactDOM.render(
             <Redirect to="/explorer/" />
           </Route>
           <Route path="/explorer/">
-            <AppExplorer />
+            <AppExplorerPage />
           </Route>
         </Switch>
       </Router>

@@ -1,4 +1,4 @@
-import { PathReadOptions, PathResponseDto } from '../types/path.types';
+import { PathReadOptions, PathResponseDto } from '../types/file-system.types';
 import { httpService } from './http.service';
 
 type PathOptions = {
@@ -20,7 +20,7 @@ const getFile = (path: string) => {
   } as FileRequestDto);
 };
 
-const getPathFiles = (path: string, options?: PathOptions) => {
+const getPathItems = (path: string, options?: PathOptions) => {
   return httpService.post<PathResponseDto>(`${getServerUrl()}/path`, {
     options,
     path,
@@ -37,4 +37,4 @@ const openFile = (path: string) => {
   } as FileRequestDto);
 };
 
-export const filesService = { getFile, getPathFiles, openFile };
+export const fileSystemService = { getFile, getPathItems, openFile };

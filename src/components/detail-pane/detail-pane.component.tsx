@@ -1,28 +1,28 @@
-import './detail-view.css';
+import './detail-pane.component.css';
 
 import React, { FC } from 'react';
 
 import { formatDate } from '../../domain/dates.domain';
 import { getSizeFromBytes } from '../../domain/files.domain';
-import { PathStats } from '../../types/path.types';
-import { AppFileIcon, IconType } from '../file-icon/file-icon';
+import { FileSystemItem } from '../../types/file-system.types';
+import { AppItemIcon, IconType } from '../item-icon/item-icon.component';
 
 type Props = {
-  file?: PathStats;
+  item?: FileSystemItem;
 };
 
-export const AppDetailView: FC<Props> = ({ file }) => {
-  if (!file) return <></>;
+export const AppDetailPane: FC<Props> = ({ item }) => {
+  if (!item) return <div className="detail-view sidebar pane"></div>;
 
   const { accessTime, changeTime, creationTime, modificationTime, name, size } =
-    file;
+    item;
 
   return (
     <div className="detail-view sidebar pane">
-      {!!name && <h4 className="no-margin-top">{name}</h4>}
+      {!!name && <h4 className="pane-title">{name}</h4>}
 
       <div className="centered-text">
-        <AppFileIcon file={file} type={IconType.Preview} />
+        <AppItemIcon item={item} type={IconType.Preview} />
         {!!size && <p>{getSizeFromBytes(size)}</p>}
       </div>
 

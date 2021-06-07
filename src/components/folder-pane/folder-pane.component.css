@@ -1,0 +1,48 @@
+.folder-view {
+  --file-border-width: 1px;
+  --file-padding: 8px;
+  --file-width: calc(
+    var(--thumbnail-size) + (var(--file-padding) + var(--file-border-width)) * 2
+  );
+  border-width: 1px 0;
+  flex: 1;
+}
+
+.folder-view .items {
+  display: flex;
+  flex-wrap: wrap;
+
+  /* display: grid;
+  grid-gap: 0;
+  grid-template-columns: repeat(auto-fit, minmax(var(--file-width), 1fr));
+  justify-content: space-around; */
+}
+
+.folder-view .item {
+  border: var(--file-border-width) solid transparent;
+  cursor: pointer;
+  display: inline-block;
+  padding: var(--file-padding);
+  width: var(--file-width);
+}
+.folder-view .item.selected,
+.folder-view .item:hover {
+  background: var(--c-input-bg);
+  border-color: var(--c-input-border);
+}
+
+.folder-view .item-icon {
+  height: var(--thumbnail-size);
+  margin: 0 auto;
+  width: var(--thumbnail-size);
+}
+
+.folder-view .item-icon .material-icons {
+  font-size: var(--thumbnail-size);
+}
+
+.folder-view .label {
+  margin-top: 4px;
+  overflow-wrap: break-word;
+  text-align: center;
+}
