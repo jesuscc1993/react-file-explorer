@@ -8,8 +8,9 @@
 }
 
 .favorites-view .favorite {
+  border: 1px solid transparent;
   cursor: pointer;
-  padding: 6px var(--pane-padding);
+  padding: 4px var(--pane-padding);
   user-select: none;
 }
 .favorites-view .favorite:hover {

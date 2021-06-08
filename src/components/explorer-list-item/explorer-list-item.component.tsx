@@ -1,4 +1,4 @@
-import './explorer-grid-item.component.css';
+import './explorer-list-item.component.css';
 
 import React, { FC, MouseEvent } from 'react';
 import { ContextMenu, ContextMenuTrigger, MenuItem } from 'react-contextmenu';
@@ -14,7 +14,7 @@ type Props = {
   selectItem: (item?: FileSystemItem) => void;
 };
 
-export const AppExplorerGridItem: FC<Props> = ({
+export const AppExplorerListItem: FC<Props> = ({
   item,
   selectedItem,
   openItem,
@@ -33,7 +33,7 @@ export const AppExplorerGridItem: FC<Props> = ({
 
   return (
     <div
-      className={`explorer-grid-item item ${
+      className={`explorer-list-item item ${
         item === selectedItem ? 'selected' : ''
       }`}
       key={item.name}

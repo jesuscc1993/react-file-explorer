@@ -1,0 +1,19 @@
+.explorer-grid-item {
+  padding: var(--file-padding);
+  width: var(--file-width);
+}
+
+.explorer-grid-item .item-icon {
+  height: var(--thumbnail-size);
+  margin: 0 auto;
+  width: var(--thumbnail-size);
+}
+
+.explorer-grid-item .item-icon .material-icons {
+  font-size: var(--thumbnail-size);
+}
+
+.explorer-grid-item .label {
+  margin-top: 4px;
+  text-align: center;
+}

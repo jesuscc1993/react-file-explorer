@@ -28,6 +28,25 @@ export const imageExtensions = [
   'WEBP',
 ];
 
+export const textExtensions = [
+  'CSS',
+  'CSV',
+  'DOC',
+  'DOCX',
+  'HTML',
+  'INI',
+  'JS',
+  'JSON',
+  'LASS',
+  'MD',
+  'SASS',
+  'SCSS',
+  'TS',
+  'TSX',
+  'TXT',
+  'XML',
+];
+
 export const videoExtensions = [
   'AVI',
   'FLV',

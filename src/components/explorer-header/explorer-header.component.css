@@ -1,5 +1,5 @@
-.address-bar {
-  --button-size: 28px;
+.explorer-header {
+  --input-size: 30px;
   --padding: 12px;
   align-items: center;
   border-width: 0;
@@ -7,38 +7,42 @@
   height: var(--header-height);
 }
 
-.address-bar .address-input {
+.explorer-header .address-input {
   flex: 1;
   margin: 0 4px;
 }
 
-.address-bar button {
+.explorer-header button {
   border-radius: 50%;
-  height: var(--button-size);
-  width: var(--button-size);
+  height: var(--input-size);
+  width: var(--input-size);
 }
 
-.address-bar button.back {
+.explorer-header button.back {
   border-radius: 50% 0 0 50%;
 }
-.address-bar button.forward {
+.explorer-header button.forward {
   border-radius: 0 50% 50% 0;
   margin-left: -1px;
 }
-.address-bar button.up {
+.explorer-header button.up {
   margin: 0 4px;
 }
 
-.address-bar input {
+.explorer-header input {
   border-radius: 16px;
   font-size: var(--font-size);
-  height: var(--button-size);
+  height: var(--input-size);
   padding: 0 var(--padding);
 }
 
-.address-bar .separator {
-  height: var(--button-size);
+.explorer-header .separator {
+  height: var(--input-size);
   width: 1px;
   margin: 0 var(--padding);
   background: var(--c-input-border);
+}
+
+.explorer-header .off {
+  opacity: 0.33;
 }

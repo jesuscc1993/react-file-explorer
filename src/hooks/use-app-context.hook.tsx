@@ -1,29 +1,22 @@
 import React, { FC, useState } from 'react';
 
 import { settingsKey } from '../constants/storage.constants';
-import {
-  addFavoriteToList,
-  removeFavoriteFromList,
-} from '../domain/settings.domain';
+import { addFavoriteToList, removeFavoriteFromList } from '../domain/settings.domain';
 import { getStorageValue, setStorageValue } from '../domain/storage.domain';
-
-type AppContextState = {
-  leftSidebar: boolean;
-  rightSidebar: boolean;
-  favorites: string[];
-};
+import { AppSettings, ExplorerViewMode } from '../types/explorer.types';
 
 type AppContextValue = {
-  appState: AppContextState;
+  appState: AppSettings;
   addFavorite: (path: string) => void;
   removeFavorite: (path: string) => void;
-  setAppState: (appContextState: AppContextState) => void;
+  setAppState: (appContextState: AppSettings) => void;
 };
 
-const defaultAppContextState: AppContextState = {
+const defaultAppContextState: AppSettings = {
+  favorites: [],
   leftSidebar: true,
   rightSidebar: true,
-  favorites: [],
+  viewMode: ExplorerViewMode.Grid,
 };
 
 const AppContext = React.createContext<AppContextValue>({
@@ -33,7 +26,7 @@ const AppContext = React.createContext<AppContextValue>({
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   removeFavorite: (_: string) => {},
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setAppState: (_: AppContextState) => {},
+  setAppState: (_: AppSettings) => {},
 });
 
 export const AppContextProvider: FC = ({ children }) => {
@@ -55,7 +48,7 @@ export const AppContextProvider: FC = ({ children }) => {
     });
   };
 
-  const _setAppState = (newAppState: AppContextState) => {
+  const _setAppState = (newAppState: AppSettings) => {
     setStorageValue(settingsKey, newAppState);
     setAppState(newAppState);
   };

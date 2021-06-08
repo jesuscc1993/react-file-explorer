@@ -1,16 +1,11 @@
 import './explorer-header.component.css';
 
-import React, {
-  ChangeEvent,
-  FC,
-  KeyboardEvent,
-  useEffect,
-  useState,
-} from 'react';
+import React, { ChangeEvent, FC, KeyboardEvent, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 
 import { directorySeparator } from '../../constants/explorer.constants';
 import { getSanitizedAddress } from '../../domain/os.domain';
+import { getOppositeViewMode, getViewModeIcon } from '../../domain/settings.domain';
 import { countInstancesInString } from '../../domain/strings.domain';
 import { useAppContext } from '../../hooks/use-app-context.hook';
 
@@ -68,10 +63,19 @@ export const AppExplorerHeader: FC<Props> = ({ path }) => {
     setAppState({ ...appState, rightSidebar: !appState.rightSidebar });
   };
 
+  const toggleViewMode = () => {
+    setAppState({
+      ...appState,
+      viewMode: getOppositeViewMode(appState.viewMode),
+    });
+  };
+
   return (
-    <div className="address-bar pane">
+    <div className="explorer-header pane">
       <button title="Toggle left sidebar" onClick={toggleLeftSidebar}>
-        <span className="material-icons">table_chart</span>
+        <span className={`material-icons ${!appState.leftSidebar && 'off'}`}>
+          table_chart
+        </span>
       </button>
 
       <span className="separator" />
@@ -98,10 +102,18 @@ export const AppExplorerHeader: FC<Props> = ({ path }) => {
         onKeyDown={onKeyDown}
       />
 
+      <button title="Toggle view mode" onClick={toggleViewMode}>
+        <span className="material-icons">
+          {getViewModeIcon(appState.viewMode)}
+        </span>
+      </button>
+
       <span className="separator" />
 
       <button title="Toggle right sidebar" onClick={toggleRightSidebar}>
-        <span className="material-icons">table_chart</span>
+        <span className={`material-icons ${!appState.rightSidebar && 'off'}`}>
+          table_chart
+        </span>
       </button>
     </div>
   );

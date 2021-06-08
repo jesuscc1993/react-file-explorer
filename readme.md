@@ -20,4 +20,5 @@ This project requires [node-file-explorer](https://github.com/jesuscc1993/node-f
 
 - Extract hardcoded values to ENV.
 - Implement manual favourites sorting.
-- Implement list view, alternative to the current grid view.
+- Implement icon/font size icon sliders.
+- (Optional) Implement create/delete folder/file options

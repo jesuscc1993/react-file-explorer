@@ -1,9 +1,5 @@
 import {
-  audioExtensions,
-  directorySeparator,
-  extensionSeparator,
-  imageExtensions,
-  sizes,
+  audioExtensions, directorySeparator, extensionSeparator, imageExtensions, sizes, textExtensions,
   videoExtensions,
 } from '../constants/explorer.constants';
 import { FileSystemItem, FileSystemItemType } from '../types/file-system.types';
@@ -16,6 +12,7 @@ export const getItemType = (item: FileSystemItem): FileSystemItemType => {
 
   if (audioExtensions.includes(fileExtension)) return FileSystemItemType.Audio;
   if (imageExtensions.includes(fileExtension)) return FileSystemItemType.Image;
+  if (textExtensions.includes(fileExtension)) return FileSystemItemType.Text;
   if (videoExtensions.includes(fileExtension)) return FileSystemItemType.Video;
   return FileSystemItemType.File;
 };
@@ -47,13 +44,14 @@ export const getSizeFromBytes = (bytes: number) => {
 };
 
 export const getFolderName = (path: string) => {
-  return path.split(directorySeparator).pop();
+  return path.split(directorySeparator).pop() || path;
 };
 
 const iconsByFileType: Record<FileSystemItemType, string> = {
   [FileSystemItemType.Audio]: 'music_note',
-  [FileSystemItemType.File]: 'description',
+  [FileSystemItemType.File]: 'insert_drive_file',
   [FileSystemItemType.Folder]: 'folder',
   [FileSystemItemType.Image]: 'image',
+  [FileSystemItemType.Text]: 'description',
   [FileSystemItemType.Video]: 'movie',
 };

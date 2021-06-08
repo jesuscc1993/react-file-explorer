@@ -16,6 +16,7 @@ export enum FileSystemItemType {
   File = 'file',
   Folder = 'folder',
   Image = 'image',
+  Text = 'text',
   Video = 'video',
 }
 
