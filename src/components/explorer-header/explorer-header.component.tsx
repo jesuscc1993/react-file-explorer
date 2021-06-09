@@ -8,14 +8,14 @@ import { getSanitizedAddress } from '../../domain/os.domain';
 import { getOppositeViewMode, getViewModeIcon } from '../../domain/settings.domain';
 import { countInstancesInString } from '../../domain/strings.domain';
 import { useAppContext } from '../../hooks/use-app-context.hook';
+import { useQueryParams } from '../../hooks/use-query-params.hook';
 
-type Props = {
-  path: string;
-};
-
-export const AppExplorerHeader: FC<Props> = ({ path }) => {
+export const AppExplorerHeader: FC = () => {
+  const params = useQueryParams();
   const history = useHistory();
   const { appSettings, setAppSettings } = useAppContext();
+
+  const path = params.get('path') || '';
 
   const [formAddress, setFormAddress] = useState(path);
 
@@ -70,9 +70,18 @@ export const AppExplorerHeader: FC<Props> = ({ path }) => {
     });
   };
 
+  const showSettingsModal = () => {
+    // TODO remove before pushing
+    console.log(`# TODO`);
+  };
+
   return (
     <div className="explorer-header pane">
-      <button title="Toggle left sidebar" onClick={toggleLeftSidebar}>
+      <button
+        className="left-sidebar"
+        title="Toggle left sidebar"
+        onClick={toggleLeftSidebar}
+      >
         <span className={`material-icons ${!appSettings.leftSidebar && 'off'}`}>
           table_chart
         </span>
@@ -92,7 +101,7 @@ export const AppExplorerHeader: FC<Props> = ({ path }) => {
         <span className="material-icons">arrow_forward</span>
       </button>
 
-      <button className="up" title="Go up" onClick={navigateUp}>
+      <button className="up vertical-margin" title="Go up" onClick={navigateUp}>
         <span className="material-icons">arrow_upward</span>
       </button>
 
@@ -103,15 +112,31 @@ export const AppExplorerHeader: FC<Props> = ({ path }) => {
         onKeyDown={onKeyDown}
       />
 
-      <button title="Toggle view mode" onClick={toggleViewMode}>
+      <button
+        className="view-mode vertical-margin"
+        title="Toggle view mode"
+        onClick={toggleViewMode}
+      >
         <span className="material-icons">
           {getViewModeIcon(appSettings.viewMode)}
         </span>
       </button>
 
+      <button
+        className="settings"
+        title="Change app settings"
+        onClick={showSettingsModal}
+      >
+        <span className="material-icons">settings</span>
+      </button>
+
       <span className="separator" />
 
-      <button title="Toggle right sidebar" onClick={toggleRightSidebar}>
+      <button
+        className="right-sidebar"
+        title="Toggle right sidebar"
+        onClick={toggleRightSidebar}
+      >
         <span
           className={`material-icons ${!appSettings.rightSidebar && 'off'}`}
         >

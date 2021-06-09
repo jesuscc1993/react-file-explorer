@@ -21,15 +21,19 @@ const os = getOs();
 export const AppExplorer: FC = () => {
   const history = useHistory();
   const params = useQueryParams();
-  const { appSettings, items, selectedItem, setItems, setSelectedItem } =
+  const { appSettings, selectedItem, setItems, setSelectedItem } =
     useAppContext();
 
-  const path = params.get('path') || getStartingPath(os);
+  const path = params.get('path') || '';
 
   useEffect(() => {
-    setSelectedItem(undefined);
-    fileSystemService.getPathItems(path).pipe(tap(setItems)).subscribe();
-  }, [path, setItems, setSelectedItem]);
+    if (path) {
+      setSelectedItem(undefined);
+      fileSystemService.getPathItems(path).pipe(tap(setItems)).subscribe();
+    } else {
+      openDirectory(getStartingPath(os));
+    }
+  }, [path]);
 
   const selectItem = (item?: FileSystemItem) => {
     if (!item) {
@@ -57,7 +61,7 @@ export const AppExplorer: FC = () => {
 
   return (
     <div className="app-explorer">
-      <AppExplorerHeader path={path} />
+      <AppExplorerHeader />
 
       <div className="middle-section">
         {appSettings.leftSidebar && (
@@ -65,17 +69,15 @@ export const AppExplorer: FC = () => {
         )}
 
         <AppFolderPane
-          items={items}
           name={getFolderName(path)}
-          selectedItem={selectedItem}
-          selectItem={selectItem}
           openItem={openItem}
+          selectItem={selectItem}
         />
 
-        {appSettings.rightSidebar && <AppDetailPane item={selectedItem} />}
+        {appSettings.rightSidebar && <AppDetailPane />}
       </div>
 
-      <AppExplorerFooter selectedFile={selectedItem} />
+      <AppExplorerFooter />
     </div>
   );
 };

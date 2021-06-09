@@ -2,16 +2,26 @@ import './explorer-footer.component.css';
 
 import React, { FC } from 'react';
 
-import { FileSystemItem } from '../../types/file-system.types';
+import { getSizeFromBytes } from '../../domain/files.domain';
+import { useAppContext } from '../../hooks/use-app-context.hook';
 
-type Props = {
-  selectedFile?: FileSystemItem;
-};
+export const AppExplorerFooter: FC = () => {
+  const { items, selectedItem } = useAppContext();
 
-export const AppExplorerFooter: FC<Props> = ({ selectedFile }) => {
+  const showItems = items?.length;
+
   return (
     <div className="footer-section pane">
-      <span>{selectedFile?.absolutePath}</span>
+      {showItems && <span>{items?.length} items</span>}
+
+      {showItems && selectedItem && <span>|</span>}
+
+      {selectedItem && (
+        <>
+          <span>&quot;{selectedItem.absolutePath}&quot;</span>
+          <span>{getSizeFromBytes(selectedItem.size)}</span>
+        </>
+      )}
     </div>
   );
 };

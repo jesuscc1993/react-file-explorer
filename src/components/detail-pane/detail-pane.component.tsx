@@ -4,25 +4,23 @@ import React, { FC } from 'react';
 
 import { formatDate } from '../../domain/dates.domain';
 import { getSizeFromBytes } from '../../domain/files.domain';
-import { FileSystemItem } from '../../types/file-system.types';
+import { useAppContext } from '../../hooks/use-app-context.hook';
 import { AppItemIcon, IconType } from '../item-icon/item-icon.component';
 
-type Props = {
-  item?: FileSystemItem;
-};
+export const AppDetailPane: FC = () => {
+  const { selectedItem } = useAppContext();
 
-export const AppDetailPane: FC<Props> = ({ item }) => {
-  if (!item) return <div className="detail-view sidebar pane"></div>;
+  if (!selectedItem) return <div className="detail-view sidebar pane"></div>;
 
   const { accessTime, changeTime, creationTime, modificationTime, name, size } =
-    item;
+    selectedItem;
 
   return (
     <div className="detail-view sidebar pane">
       {!!name && <h4 className="pane-title">{name}</h4>}
 
       <div className="centered-text">
-        <AppItemIcon item={item} type={IconType.Preview} />
+        <AppItemIcon item={selectedItem} type={IconType.Preview} />
         {!!size && <p>{getSizeFromBytes(size)}</p>}
       </div>
 

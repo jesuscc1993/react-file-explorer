@@ -9,18 +9,16 @@ import { AppItemIcon } from '../item-icon/item-icon.component';
 
 type Props = {
   item: FileSystemItem;
-  selectedItem?: FileSystemItem;
   openItem: (item: FileSystemItem) => void;
   selectItem: (item?: FileSystemItem) => void;
 };
 
 export const AppExplorerListItem: FC<Props> = ({
   item,
-  selectedItem,
   openItem,
   selectItem,
 }) => {
-  const { addFavorite } = useAppContext();
+  const { selectedItem, addFavorite } = useAppContext();
 
   const onItemPress = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();

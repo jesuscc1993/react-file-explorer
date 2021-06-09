@@ -9,21 +9,13 @@ import { AppExplorerGridItem } from '../explorer-grid-item/explorer-grid-item.co
 import { AppExplorerListItem } from '../explorer-list-item/explorer-list-item.component';
 
 type Props = {
-  items?: FileSystemItem[];
   name?: string;
-  selectedItem?: FileSystemItem;
   openItem: (item: FileSystemItem) => void;
   selectItem: (item?: FileSystemItem) => void;
 };
 
-export const AppFolderPane: FC<Props> = ({
-  items,
-  name,
-  selectedItem,
-  openItem,
-  selectItem,
-}) => {
-  const { appSettings } = useAppContext();
+export const AppFolderPane: FC<Props> = ({ name, openItem, selectItem }) => {
+  const { appSettings, items } = useAppContext();
 
   const AppItemComponent =
     appSettings.viewMode === ExplorerViewMode.Grid
@@ -40,7 +32,6 @@ export const AppFolderPane: FC<Props> = ({
             <AppItemComponent
               key={item.name}
               item={item}
-              selectedItem={selectedItem}
               openItem={openItem}
               selectItem={selectItem}
             />
