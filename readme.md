@@ -18,8 +18,6 @@ This project requires [node-file-explorer](https://github.com/jesuscc1993/node-f
 
 ## TODO
 
-- Extract hardcoded values to ENV.
-- Implement icon/font size icon sliders.
 - (Extra) Add clickable breadcrumb sections.
 - (Extra) Implement copy/paste folder/file options.
 - (Extra) Implement create/delete folder/file options.

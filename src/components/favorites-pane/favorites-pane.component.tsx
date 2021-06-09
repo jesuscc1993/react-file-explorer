@@ -4,7 +4,7 @@ import React, { FC, useState } from 'react';
 
 import { getFolderName } from '../../domain/files.domain';
 import { useAppContext } from '../../hooks/use-app-context.hook';
-import { AppSortableList } from '../generic/sortable-list.component';
+import { AppSortableList } from '../_generic/sortable-list.component';
 
 type Props = {
   onPathPress: (path: string) => void;

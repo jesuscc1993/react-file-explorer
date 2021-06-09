@@ -4,11 +4,13 @@ import React, { FC, MouseEvent } from 'react';
 import { ContextMenu, ContextMenuTrigger, MenuItem } from 'react-contextmenu';
 
 import { useAppContext } from '../../hooks/use-app-context.hook';
+import { ExplorerStyles } from '../../types/explorer.types';
 import { FileSystemItem } from '../../types/file-system.types';
 import { AppItemIcon } from '../item-icon/item-icon.component';
 
 type Props = {
   item: FileSystemItem;
+  styles?: ExplorerStyles;
   openItem: (item: FileSystemItem) => void;
   selectItem: (item?: FileSystemItem) => void;
 };

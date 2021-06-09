@@ -9,9 +9,9 @@
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 16px; /* Preferred icon size */
+  font-size: var(--font-size);
   display: inline-block;
-  line-height: 1.25;
+  line-height: var(--line-height);
   text-transform: none;
   letter-spacing: normal;
   word-wrap: normal;

@@ -1,6 +1,5 @@
 .explorer-grid-item {
-  padding: var(--file-padding);
-  width: var(--file-width);
+  padding: var(--item-padding);
 }
 
 .explorer-grid-item .item-icon {

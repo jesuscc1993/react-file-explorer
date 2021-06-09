@@ -4,8 +4,8 @@
   --header-height: 48px;
   --input-border-radius: 15px;
   --input-size: 30px;
-  --line-height-compact: 18px;
-  --line-height: 20px;
+  --line-height-compact: var(--font-size) * 1.125;
+  --line-height: var(--font-size) * 1.25;
   --pane-padding: 12px;
   --preview-size: 256px;
   --thumbnail-size: 128px;
@@ -52,9 +52,23 @@ button:hover,
 input:hover {
   border-color: var(--c-input-border-hover);
 }
-button:active,
 input:focus {
   border-color: var(--c-input-border-active);
+}
+button:active {
+  opacity: 0.5;
+}
+
+button.primary {
+  background-color: var(--c-primary);
+  border-color: var(--c-primary-border);
+}
+button.primary:hover {
+  border-color: var(--c-primary-hover);
+}
+
+input[type='range'] {
+  width: 100%;
 }
 
 .clickable {
@@ -120,4 +134,16 @@ input:focus {
   cursor: pointer;
   padding: 6px 8px;
   min-width: 160px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #0008;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

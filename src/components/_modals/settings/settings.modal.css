@@ -1,0 +1,25 @@
+.settings-modal button + button {
+  margin-left: 8px;
+}
+
+.settings-modal .modal-title {
+  margin-top: 0;
+}
+
+.settings-modal .icon-preview {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 320px;
+  justify-content: center;
+  margin-bottom: var(--pane-padding);
+  width: var(--preview-size);
+}
+
+.settings-modal .footer {
+  display: flex;
+}
+
+.settings-modal .footer > * {
+  flex: 1;
+}

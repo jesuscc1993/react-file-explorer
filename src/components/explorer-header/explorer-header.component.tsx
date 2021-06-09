@@ -1,6 +1,7 @@
 import './explorer-header.component.css';
 
 import React, { ChangeEvent, FC, KeyboardEvent, useEffect, useState } from 'react';
+import ReactModal from 'react-modal';
 import { useHistory } from 'react-router';
 
 import { directorySeparator } from '../../constants/explorer.constants';
@@ -9,6 +10,7 @@ import { getOppositeViewMode, getViewModeIcon } from '../../domain/settings.doma
 import { countInstancesInString } from '../../domain/strings.domain';
 import { useAppContext } from '../../hooks/use-app-context.hook';
 import { useQueryParams } from '../../hooks/use-query-params.hook';
+import { AppSettingsModal } from '../_modals/settings/settings.modal';
 
 export const AppExplorerHeader: FC = () => {
   const params = useQueryParams();
@@ -18,6 +20,7 @@ export const AppExplorerHeader: FC = () => {
   const path = params.get('path') || '';
 
   const [formAddress, setFormAddress] = useState(path);
+  const [settingsModalVisible, setSettingsModalVisible] = useState(false);
 
   useEffect(() => setFormAddress(path), [path]);
 
@@ -70,9 +73,8 @@ export const AppExplorerHeader: FC = () => {
     });
   };
 
-  const showSettingsModal = () => {
-    // TODO remove before pushing
-    console.log(`# TODO`);
+  const toggleSettingsModal = () => {
+    setSettingsModalVisible(!settingsModalVisible);
   };
 
   return (
@@ -125,7 +127,7 @@ export const AppExplorerHeader: FC = () => {
       <button
         className="settings"
         title="Change app settings"
-        onClick={showSettingsModal}
+        onClick={toggleSettingsModal}
       >
         <span className="material-icons">settings</span>
       </button>
@@ -143,6 +145,17 @@ export const AppExplorerHeader: FC = () => {
           table_chart
         </span>
       </button>
+
+      <ReactModal
+        ariaHideApp={false}
+        className="modal"
+        isOpen={settingsModalVisible}
+        overlayClassName="modal-backdrop"
+        shouldCloseOnOverlayClick={true}
+        onRequestClose={toggleSettingsModal}
+      >
+        <AppSettingsModal onRequestClose={toggleSettingsModal} />
+      </ReactModal>
     </div>
   );
 };

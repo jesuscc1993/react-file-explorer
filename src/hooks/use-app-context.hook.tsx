@@ -8,6 +8,8 @@ import { FileSystemItem } from '../types/file-system.types';
 
 const defaultAppSettings: AppSettings = {
   favorites: [],
+  iconSize: 128,
+  labelSize: 16,
   leftSidebar: true,
   rightSidebar: true,
   viewMode: ExplorerViewMode.Grid,

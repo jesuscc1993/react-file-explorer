@@ -31,6 +31,11 @@
   --c-gray-94: #f0f0f0;
   --c-gray-97: #f8f8f8;
 
+  --c-primary-active: var(--c-gray-53);
+  --c-primary-border: var(--c-gray-35);
+  --c-primary-hover: var(--c-gray-44);
+  --c-primary: var(--c-gray-25);
+
   --c-bg: var(--c-gray-06);
   --c-border: var(--c-gray-16);
   --c-fg: var(--c-gray-88);

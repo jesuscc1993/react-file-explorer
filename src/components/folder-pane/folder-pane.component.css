@@ -1,9 +1,9 @@
 .folder-view {
-  --file-border-width: 1px;
-  --file-padding: 8px;
-  --file-width: calc(
-    var(--thumbnail-size) + (var(--file-padding) + var(--file-border-width)) * 2
-  );
+  --item-border-width: 1px;
+  --item-padding: 8px;
+  /* --item-width: calc(
+    var(--thumbnail-size) + (var(--item-padding) + var(--item-border-width)) * 2
+  ); */
   border-width: 1px 0;
   flex: 1;
   padding: 0;
@@ -24,7 +24,7 @@
 
   /* display: grid;
   grid-gap: 0;
-  grid-template-columns: repeat(auto-fit, minmax(var(--file-width), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--item-width), 1fr));
   justify-content: space-around; */
 }
 
@@ -35,7 +35,7 @@
 }
 
 .folder-view .item {
-  border: var(--file-border-width) solid transparent;
+  border: var(--item-border-width) solid transparent;
   cursor: pointer;
   display: inline-block;
 }
