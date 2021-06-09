@@ -40,7 +40,7 @@ export const getFileExtension = ({ name }: FileSystemItem) => {
 export const getSizeFromBytes = (bytes: number) => {
   if (bytes == 0) return '0 Byte';
   const i = Math.ceil(Math.floor(Math.log(bytes) / Math.log(1024)));
-  return Math.round(bytes / Math.pow(1024, i)) + ' ' + sizes[i];
+  return (bytes / Math.pow(1024, i)).toFixed(2) + ' ' + sizes[i];
 };
 
 export const getFolderName = (path: string) => {
