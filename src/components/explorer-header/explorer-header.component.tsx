@@ -83,6 +83,7 @@ export const AppExplorerHeader: FC<Props> = ({ path }) => {
       <button className="back" title="Go back" onClick={history.goBack}>
         <span className="material-icons">arrow_back</span>
       </button>
+
       <button
         className="forward"
         title="Go forward"

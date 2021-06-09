@@ -27,7 +27,7 @@ export const AppExplorerListItem: FC<Props> = ({
     selectItem(item);
   };
 
-  const onFavoritePress = () => addFavorite(item.name);
+  const onFavoritePress = () => addFavorite(item.absolutePath);
 
   const onOpenPress = () => openItem(item);
 

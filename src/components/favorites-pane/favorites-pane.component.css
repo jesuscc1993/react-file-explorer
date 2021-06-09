@@ -10,6 +10,8 @@
 .favorites-view .favorite {
   border: 1px solid transparent;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
   padding: 4px var(--pane-padding);
   user-select: none;
 }

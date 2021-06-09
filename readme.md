@@ -19,6 +19,9 @@ This project requires [node-file-explorer](https://github.com/jesuscc1993/node-f
 ## TODO
 
 - Extract hardcoded values to ENV.
-- Implement manual favourites sorting.
 - Implement icon/font size icon sliders.
-- (Optional) Implement create/delete folder/file options
+- (Extra) Add clickable breadcrumb sections.
+- (Extra) Implement copy/paste folder/file options.
+- (Extra) Implement create/delete folder/file options.
+- (Extra) Implement sorting options (by name, extension or dates).
+- (Unlikely) Implement terminal to run commands directly.

@@ -10,6 +10,7 @@ type AppContextValue = {
   addFavorite: (path: string) => void;
   removeFavorite: (path: string) => void;
   setAppState: (appContextState: AppSettings) => void;
+  setFavorites: (paths: string[]) => void;
 };
 
 const defaultAppContextState: AppSettings = {
@@ -27,6 +28,8 @@ const AppContext = React.createContext<AppContextValue>({
   removeFavorite: (_: string) => {},
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setAppState: (_: AppSettings) => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setFavorites: (_: string[]) => {},
 });
 
 export const AppContextProvider: FC = ({ children }) => {
@@ -35,17 +38,15 @@ export const AppContextProvider: FC = ({ children }) => {
   );
 
   const addFavorite = (path: string) => {
-    _setAppState({
-      ...appState,
-      favorites: addFavoriteToList(appState.favorites, path),
-    });
+    setFavorites(addFavoriteToList(appState.favorites, path));
   };
 
   const removeFavorite = (path: string) => {
-    _setAppState({
-      ...appState,
-      favorites: removeFavoriteFromList(appState.favorites, path),
-    });
+    setFavorites(removeFavoriteFromList(appState.favorites, path));
+  };
+
+  const setFavorites = (favorites: string[]) => {
+    _setAppState({ ...appState, favorites });
   };
 
   const _setAppState = (newAppState: AppSettings) => {
@@ -59,6 +60,7 @@ export const AppContextProvider: FC = ({ children }) => {
         appState,
         addFavorite,
         removeFavorite,
+        setFavorites,
         setAppState: _setAppState,
       }}
     >

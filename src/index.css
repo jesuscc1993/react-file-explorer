@@ -2,8 +2,10 @@
   --font-size: 16px;
   --footer-height: 40px;
   --header-height: 48px;
-  --line-height: 20px;
+  --input-border-radius: 15px;
+  --input-size: 30px;
   --line-height-compact: 18px;
+  --line-height: 20px;
   --pane-padding: 12px;
   --preview-size: 256px;
   --thumbnail-size: 128px;
@@ -42,6 +44,9 @@ input {
   border: 1px solid var(--c-input-border);
   color: var(--c-fg);
   outline: none;
+  height: var(--input-size);
+  min-width: var(--input-size);
+  border-radius: var(--input-border-radius);
 }
 button:hover,
 input:hover {
@@ -52,12 +57,16 @@ input:focus {
   border-color: var(--c-input-border-active);
 }
 
-.flex {
-  display: flex;
+.clickable {
+  cursor: pointer;
 }
 
-.flex-1 {
-  flex: 1;
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: flex;
 }
 
 .pane {
@@ -67,7 +76,13 @@ input:focus {
 }
 
 .pane-title {
+  display: flex;
+  justify-content: space-between;
   margin: 0 0 var(--pane-padding);
+}
+
+.pane-title button {
+  margin: -5px;
 }
 
 .sidebar {
@@ -101,13 +116,8 @@ input:focus {
 
 /* libraries */
 .react-contextmenu-item {
-  background: var(--c-bg);
-  border: 1px solid var(--c-border);
-  padding: var(--pane-padding);
-  margin-bottom: -1px;
+  border: 1px solid;
   cursor: pointer;
-}
-.react-contextmenu-item:hover {
-  background: var(--c-input-bg);
-  border-color: var(--c-input-border);
+  padding: 6px 8px;
+  min-width: 160px;
 }

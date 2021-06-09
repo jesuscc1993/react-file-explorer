@@ -1,6 +1,4 @@
 .explorer-header {
-  --input-size: 30px;
-  --padding: 12px;
   align-items: center;
   border-width: 0;
   display: flex;
@@ -10,12 +8,6 @@
 .explorer-header .address-input {
   flex: 1;
   margin: 0 4px;
-}
-
-.explorer-header button {
-  border-radius: 50%;
-  height: var(--input-size);
-  width: var(--input-size);
 }
 
 .explorer-header button.back {
@@ -30,16 +22,14 @@
 }
 
 .explorer-header input {
-  border-radius: 16px;
   font-size: var(--font-size);
-  height: var(--input-size);
-  padding: 0 var(--padding);
+  padding: 0 var(--pane-padding);
 }
 
 .explorer-header .separator {
   height: var(--input-size);
   width: 1px;
-  margin: 0 var(--padding);
+  margin: 0 var(--pane-padding);
   background: var(--c-input-border);
 }
 

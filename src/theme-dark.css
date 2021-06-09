@@ -1,9 +1,51 @@
 :root {
-  --c-bg: #111;
-  --c-border: #282828;
-  --c-fg: #ddd;
-  --c-input-bg: #222;
-  --c-input-border-active: #666;
-  --c-input-border-hover: #444;
-  --c-input-border: #333;
+  --c-gray-03: #080808;
+  --c-gray-06: #101010;
+  --c-gray-09: #181818;
+  --c-gray-13: #202020;
+  --c-gray-16: #282828;
+  --c-gray-19: #303030;
+  --c-gray-22: #383838;
+  --c-gray-25: #404040;
+  --c-gray-28: #484848;
+  --c-gray-31: #505050;
+  --c-gray-35: #585858;
+  --c-gray-37: #606060;
+  --c-gray-41: #686868;
+  --c-gray-44: #707070;
+  --c-gray-47: #787878;
+  --c-gray-50: #808080;
+  --c-gray-53: #888888;
+  --c-gray-56: #909090;
+  --c-gray-60: #989898;
+  --c-gray-63: #a0a0a0;
+  --c-gray-66: #a8a8a8;
+  --c-gray-69: #b0b0b0;
+  --c-gray-72: #b8b8b8;
+  --c-gray-75: #c0c0c0;
+  --c-gray-78: #c8c8c8;
+  --c-gray-82: #d0d0d0;
+  --c-gray-85: #d8d8d8;
+  --c-gray-88: #e0e0e0;
+  --c-gray-91: #e8e8e8;
+  --c-gray-94: #f0f0f0;
+  --c-gray-97: #f8f8f8;
+
+  --c-bg: var(--c-gray-06);
+  --c-border: var(--c-gray-16);
+  --c-fg: var(--c-gray-88);
+  --c-input-bg: var(--c-gray-13);
+  --c-input-border-active: var(--c-gray-41);
+  --c-input-border-hover: var(--c-gray-28);
+  --c-input-border: var(--c-gray-19);
+}
+
+/* libraries */
+.react-contextmenu-item {
+  background: var(--c-input-bg);
+  border-color: var(--c-input-border);
+}
+.react-contextmenu-item:hover {
+  background: var(--c-gray-22);
+  border-color: var(--c-gray-28);
 }
