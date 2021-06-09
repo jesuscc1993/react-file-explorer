@@ -15,7 +15,7 @@ type Props = {
 
 export const AppExplorerHeader: FC<Props> = ({ path }) => {
   const history = useHistory();
-  const { appState, setAppState } = useAppContext();
+  const { appSettings, setAppSettings } = useAppContext();
 
   const [formAddress, setFormAddress] = useState(path);
 
@@ -56,24 +56,24 @@ export const AppExplorerHeader: FC<Props> = ({ path }) => {
   };
 
   const toggleLeftSidebar = () => {
-    setAppState({ ...appState, leftSidebar: !appState.leftSidebar });
+    setAppSettings({ ...appSettings, leftSidebar: !appSettings.leftSidebar });
   };
 
   const toggleRightSidebar = () => {
-    setAppState({ ...appState, rightSidebar: !appState.rightSidebar });
+    setAppSettings({ ...appSettings, rightSidebar: !appSettings.rightSidebar });
   };
 
   const toggleViewMode = () => {
-    setAppState({
-      ...appState,
-      viewMode: getOppositeViewMode(appState.viewMode),
+    setAppSettings({
+      ...appSettings,
+      viewMode: getOppositeViewMode(appSettings.viewMode),
     });
   };
 
   return (
     <div className="explorer-header pane">
       <button title="Toggle left sidebar" onClick={toggleLeftSidebar}>
-        <span className={`material-icons ${!appState.leftSidebar && 'off'}`}>
+        <span className={`material-icons ${!appSettings.leftSidebar && 'off'}`}>
           table_chart
         </span>
       </button>
@@ -105,14 +105,16 @@ export const AppExplorerHeader: FC<Props> = ({ path }) => {
 
       <button title="Toggle view mode" onClick={toggleViewMode}>
         <span className="material-icons">
-          {getViewModeIcon(appState.viewMode)}
+          {getViewModeIcon(appSettings.viewMode)}
         </span>
       </button>
 
       <span className="separator" />
 
       <button title="Toggle right sidebar" onClick={toggleRightSidebar}>
-        <span className={`material-icons ${!appState.rightSidebar && 'off'}`}>
+        <span
+          className={`material-icons ${!appSettings.rightSidebar && 'off'}`}
+        >
           table_chart
         </span>
       </button>

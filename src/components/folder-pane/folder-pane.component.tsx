@@ -23,10 +23,10 @@ export const AppFolderPane: FC<Props> = ({
   openItem,
   selectItem,
 }) => {
-  const { appState } = useAppContext();
+  const { appSettings } = useAppContext();
 
   const AppItemComponent =
-    appState.viewMode === ExplorerViewMode.Grid
+    appSettings.viewMode === ExplorerViewMode.Grid
       ? AppExplorerGridItem
       : AppExplorerListItem;
 
@@ -34,7 +34,7 @@ export const AppFolderPane: FC<Props> = ({
     <div className="folder-view pane" onClick={() => selectItem()}>
       <h4 className="pane-title">{name || '\u00A0'}</h4>
 
-      <div className={`items ${appState.viewMode}`}>
+      <div className={`items ${appSettings.viewMode}`}>
         {!!items?.length &&
           items.map((item) => (
             <AppItemComponent

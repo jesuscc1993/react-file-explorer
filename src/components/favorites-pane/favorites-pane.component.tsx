@@ -13,13 +13,13 @@ type Props = {
 export const AppFavoritesPane: FC<Props> = ({ onPathPress }) => {
   const [editMode, setEditMode] = useState(false);
 
-  const { appState, removeFavorite, setFavorites } = useAppContext();
+  const { appSettings, removeFavorite, setFavorites } = useAppContext();
 
   const toggleEditMode = () => setEditMode(!editMode);
 
   return (
     <div className="favorites-view sidebar pane">
-      {!!appState.favorites.length && (
+      {!!appSettings.favorites.length && (
         <h4 className="pane-title">
           <span>Favorites</span>
 
@@ -30,7 +30,7 @@ export const AppFavoritesPane: FC<Props> = ({ onPathPress }) => {
       )}
 
       <AppSortableList
-        items={appState.favorites}
+        items={appSettings.favorites}
         getKey={(item) => item}
         renderItem={(favorite) => {
           const _onPathPress = () => {

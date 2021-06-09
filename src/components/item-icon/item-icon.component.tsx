@@ -19,9 +19,9 @@ type Props = {
 };
 
 export const AppItemIcon: FC<Props> = ({ item, type = IconType.Thumbnail }) => {
-  const { appState } = useAppContext();
+  const { appSettings } = useAppContext();
   const previewsEnabled =
-    appState.viewMode === ExplorerViewMode.Grid || type === IconType.Preview;
+    appSettings.viewMode === ExplorerViewMode.Grid || type === IconType.Preview;
 
   const itemType = getItemType(item);
 

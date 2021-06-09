@@ -1,6 +1,6 @@
 import './explorer.component.css';
 
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { tap } from 'rxjs/operators';
 
@@ -21,17 +21,15 @@ const os = getOs();
 export const AppExplorer: FC = () => {
   const history = useHistory();
   const params = useQueryParams();
-  const { appState } = useAppContext();
+  const { appSettings, items, selectedItem, setItems, setSelectedItem } =
+    useAppContext();
 
   const path = params.get('path') || getStartingPath(os);
-
-  const [items, setItems] = useState<FileSystemItem[]>();
-  const [selectedItem, setSelectedItem] = useState<FileSystemItem>();
 
   useEffect(() => {
     setSelectedItem(undefined);
     fileSystemService.getPathItems(path).pipe(tap(setItems)).subscribe();
-  }, [path]);
+  }, [path, setItems, setSelectedItem]);
 
   const selectItem = (item?: FileSystemItem) => {
     if (!item) {
@@ -62,7 +60,7 @@ export const AppExplorer: FC = () => {
       <AppExplorerHeader path={path} />
 
       <div className="middle-section">
-        {appState.leftSidebar && (
+        {appSettings.leftSidebar && (
           <AppFavoritesPane onPathPress={openDirectory} />
         )}
 
@@ -74,7 +72,7 @@ export const AppExplorer: FC = () => {
           openItem={openItem}
         />
 
-        {appState.rightSidebar && <AppDetailPane item={selectedItem} />}
+        {appSettings.rightSidebar && <AppDetailPane item={selectedItem} />}
       </div>
 
       <AppExplorerFooter selectedFile={selectedItem} />
