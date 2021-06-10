@@ -14,9 +14,14 @@ export type AppSettings = {
   viewMode: ExplorerViewMode;
 };
 
-export type ExplorerStyles = {
+export type ExplorerItemStyles = {
   icon?: CSSProperties;
   iconWrapper?: CSSProperties;
   itemWrapper?: CSSProperties;
   label?: CSSProperties;
+};
+
+export type ExplorerStyles = {
+  gridItem?: ExplorerItemStyles;
+  listItem?: ExplorerItemStyles;
 };

@@ -19,21 +19,24 @@ export const getViewModeIcon = (viewMode: ExplorerViewMode) => {
 };
 
 export const getExplorerStylesfromSettings = (appSettings: AppSettings) => {
-  return {
-    itemWrapper: {
-      width: `${appSettings.iconSize + 18}px`,
+  const styles: ExplorerStyles = {
+    gridItem: {
+      icon: {
+        fontSize: `${appSettings.iconSize}px`,
+        lineHeight: `${appSettings.iconSize}px`,
+      },
+      iconWrapper: {
+        height: `${appSettings.iconSize}px`,
+        width: `${appSettings.iconSize}px`,
+      },
+      itemWrapper: {
+        width: `${appSettings.iconSize + 18}px`,
+      },
+      label: {
+        fontSize: `${appSettings.labelSize}px`,
+        lineHeight: `${appSettings.labelSize * 1.25}px`,
+      },
     },
-    iconWrapper: {
-      height: `${appSettings.iconSize}px`,
-      width: `${appSettings.iconSize}px`,
-    },
-    icon: {
-      fontSize: `${appSettings.iconSize}px`,
-      lineHeight: `${appSettings.iconSize}px`,
-    },
-    label: {
-      fontSize: `${appSettings.labelSize}px`,
-      lineHeight: `${appSettings.labelSize * 1.25}px`,
-    },
-  } as ExplorerStyles;
+  };
+  return styles;
 };

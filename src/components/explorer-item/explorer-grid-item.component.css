@@ -1,0 +1,31 @@
+.explorer-item.grid-item {
+  padding: var(--item-padding);
+}
+
+.explorer-item.grid-item .item-icon {
+  height: var(--thumbnail-size);
+  margin: 0 auto;
+  width: var(--thumbnail-size);
+}
+
+.explorer-item.grid-item .item-icon .material-icons {
+  font-size: var(--thumbnail-size);
+}
+
+.explorer-item.grid-item .label {
+  margin-top: 4px;
+  text-align: center;
+}
+
+.explorer-item.list-item {
+  padding: 2px 10px;
+}
+
+.explorer-item.list-item .item-contents {
+  display: flex;
+}
+
+.explorer-item.list-item .label {
+  line-height: var(--line-height-compact);
+  margin-left: 4px;
+}

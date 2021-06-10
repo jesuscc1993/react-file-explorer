@@ -1,10 +1,10 @@
-import './explorer-list-item.component.css';
+import './explorer-grid-item.component.css';
 
 import React, { FC, MouseEvent } from 'react';
 import { ContextMenu, ContextMenuTrigger, MenuItem } from 'react-contextmenu';
 
 import { useAppContext } from '../../hooks/use-app-context.hook';
-import { ExplorerStyles } from '../../types/explorer.types';
+import { ExplorerStyles, ExplorerViewMode } from '../../types/explorer.types';
 import { FileSystemItem } from '../../types/file-system.types';
 import { AppItemIcon } from '../item-icon/item-icon.component';
 
@@ -15,12 +15,13 @@ type Props = {
   selectItem: (item?: FileSystemItem) => void;
 };
 
-export const AppExplorerListItem: FC<Props> = ({
+export const AppExplorerItem: FC<Props> = ({
   item,
+  styles,
   openItem,
   selectItem,
 }) => {
-  const { selectedItem, addFavorite } = useAppContext();
+  const { appSettings, selectedItem, addFavorite } = useAppContext();
 
   const onItemPress = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
@@ -31,18 +32,29 @@ export const AppExplorerListItem: FC<Props> = ({
 
   const onOpenPress = () => openItem(item);
 
+  const itemClass =
+    appSettings.viewMode === ExplorerViewMode.Grid ? 'grid-item' : 'list-item';
+
+  const itemStyles =
+    appSettings.viewMode === ExplorerViewMode.Grid
+      ? styles?.gridItem
+      : styles?.listItem;
+
   return (
     <div
-      className={`explorer-list-item item ${
+      className={`explorer-item item ${itemClass} ${
         item === selectedItem ? 'selected' : ''
       }`}
       key={item.name}
+      style={itemStyles?.itemWrapper}
     >
       <ContextMenuTrigger id={`${item.name}-item`}>
         <div className="item-contents" onClick={onItemPress}>
-          <AppItemIcon item={item} />
+          <AppItemIcon item={item} styles={itemStyles} />
 
-          <div className="label">{item.name}</div>
+          <div className="label" style={itemStyles?.label}>
+            {item.name}
+          </div>
         </div>
       </ContextMenuTrigger>
 

@@ -4,11 +4,9 @@ import React, { FC, useMemo } from 'react';
 
 import { getExplorerStylesfromSettings } from '../../domain/settings.domain';
 import { useAppContext } from '../../hooks/use-app-context.hook';
-import { ExplorerViewMode } from '../../types/explorer.types';
 import { FileSystemItem } from '../../types/file-system.types';
 import { AppExplorerBreadcrumb } from '../explorer-breadcrumb/explorer-breadcrumb';
-import { AppExplorerGridItem } from '../explorer-grid-item/explorer-grid-item.component';
-import { AppExplorerListItem } from '../explorer-list-item/explorer-list-item.component';
+import { AppExplorerItem } from '../explorer-item/explorer-item.component';
 
 type Props = {
   path: string;
@@ -25,14 +23,6 @@ export const AppFolderPane: FC<Props> = ({ path, openItem, selectItem }) => {
     [filter, items],
   );
 
-  const AppItemComponent = useMemo(
-    () =>
-      appSettings.viewMode === ExplorerViewMode.Grid
-        ? AppExplorerGridItem
-        : AppExplorerListItem,
-    [appSettings.viewMode],
-  );
-
   const styles = useMemo(
     () => getExplorerStylesfromSettings(appSettings),
     [appSettings],
@@ -45,7 +35,7 @@ export const AppFolderPane: FC<Props> = ({ path, openItem, selectItem }) => {
       <div className={`items ${appSettings.viewMode}`}>
         {!!filteredItems?.length &&
           filteredItems.map((item) => (
-            <AppItemComponent
+            <AppExplorerItem
               key={item.name}
               item={item}
               styles={styles}

@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 
 import { getFileUrl, getIconForFileType, getItemType } from '../../domain/files.domain';
 import { useAppContext } from '../../hooks/use-app-context.hook';
-import { ExplorerStyles, ExplorerViewMode } from '../../types/explorer.types';
+import { ExplorerItemStyles, ExplorerViewMode } from '../../types/explorer.types';
 import { FileSystemItem, FileSystemItemType } from '../../types/file-system.types';
 
 export enum IconType {
@@ -14,7 +14,7 @@ export enum IconType {
 
 type Props = {
   item: FileSystemItem;
-  styles?: ExplorerStyles;
+  styles?: ExplorerItemStyles;
   type?: IconType;
   previewsEnabled?: boolean;
 };
