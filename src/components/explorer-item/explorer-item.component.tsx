@@ -1,9 +1,12 @@
 import './explorer-grid-item.component.css';
+import '@szhsin/react-menu/dist/index.css';
 
 import React, { FC, MouseEvent } from 'react';
-import { ContextMenu, ContextMenuTrigger, MenuItem } from 'react-contextmenu';
+
+import { ControlledMenu, MenuDivider, MenuItem } from '@szhsin/react-menu';
 
 import { useAppContext } from '../../hooks/use-app-context.hook';
+import { useContextMenu } from '../../hooks/use-context-menu.hook';
 import { ExplorerStyles, ExplorerViewMode } from '../../types/explorer.types';
 import { FileSystemItem } from '../../types/file-system.types';
 import { AppItemIcon } from '../item-icon/item-icon.component';
@@ -22,6 +25,12 @@ export const AppExplorerItem: FC<Props> = ({
   selectItem,
 }) => {
   const { appSettings, selectedItem, addFavorite } = useAppContext();
+  const {
+    contextMenuAnchorPoint,
+    isContextMenuOpen,
+    onContextMenu,
+    hideContextMenu,
+  } = useContextMenu();
 
   const onItemPress = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
@@ -41,14 +50,15 @@ export const AppExplorerItem: FC<Props> = ({
       : styles?.listItem;
 
   return (
-    <div
-      className={`explorer-item item ${itemClass} ${
-        item === selectedItem ? 'selected' : ''
-      }`}
-      key={item.name}
-      style={itemStyles?.itemWrapper}
-    >
-      <ContextMenuTrigger id={`${item.name}-item`}>
+    <>
+      <div
+        className={`explorer-item item ${itemClass} ${
+          item === selectedItem ? 'selected' : ''
+        }`}
+        key={item.name}
+        style={itemStyles?.itemWrapper}
+        onContextMenu={onContextMenu}
+      >
         <div className="item-contents" onClick={onItemPress}>
           <AppItemIcon item={item} styles={itemStyles} />
 
@@ -56,15 +66,19 @@ export const AppExplorerItem: FC<Props> = ({
             {item.name}
           </div>
         </div>
-      </ContextMenuTrigger>
+      </div>
 
-      <ContextMenu id={`${item.name}-item`}>
+      <ControlledMenu
+        anchorPoint={contextMenuAnchorPoint}
+        isOpen={isContextMenuOpen}
+        onClose={hideContextMenu}
+      >
         <MenuItem onClick={onOpenPress}>Open</MenuItem>
-
+        {item.isDirectory && <MenuDivider />}
         {item.isDirectory && (
           <MenuItem onClick={onFavoritePress}>Add to favorites</MenuItem>
         )}
-      </ContextMenu>
-    </div>
+      </ControlledMenu>
+    </>
   );
 };

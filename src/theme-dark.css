@@ -44,13 +44,3 @@
   --c-input-border-hover: var(--c-gray-28);
   --c-input-border: var(--c-gray-19);
 }
-
-/* libraries */
-.react-contextmenu-item {
-  background: var(--c-input-bg);
-  border-color: var(--c-input-border);
-}
-.react-contextmenu-item:hover {
-  background: var(--c-gray-22);
-  border-color: var(--c-gray-28);
-}

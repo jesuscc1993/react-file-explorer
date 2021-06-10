@@ -129,13 +129,30 @@ input[type='range'] {
 }
 
 /* libraries */
-.react-contextmenu-item {
-  border: 1px solid;
-  cursor: pointer;
-  padding: 6px 8px;
-  min-width: 160px;
+
+/* @szhsin/react-menu */
+#root .rc-menu {
+  background: var(--c-input-bg);
+  border-radius: 2px;
+  border: 1px solid var(--c-input-border);
+  color: var(--c-foreground);
+  padding: 0;
 }
 
+#root .rc-menu__item {
+  padding: 6px 12px;
+}
+
+#root .rc-menu__item--hover {
+  background: var(--c-input-border);
+}
+
+#root .rc-menu__divider {
+  background-color: var(--c-input-border);
+  margin: 0;
+}
+
+/* react-modal */
 .modal-backdrop {
   position: fixed;
   top: 0;
