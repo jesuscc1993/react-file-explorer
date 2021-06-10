@@ -1,4 +1,4 @@
-import { directorySeparator } from '../constants/explorer.constants';
+import { directorySeparator } from '../constants/file-system.constants';
 
 export enum Os {
   Windows = 'Windows',

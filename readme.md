@@ -18,7 +18,6 @@ This project requires [node-file-explorer](https://github.com/jesuscc1993/node-f
 
 ## TODO
 
-- (Extra) Add basic text filter.
 - (Extra) Implement copy/paste folder/file options.
 - (Extra) Implement create/delete folder/file options.
 - (Extra) Implement sorting options (by name, extension or dates).

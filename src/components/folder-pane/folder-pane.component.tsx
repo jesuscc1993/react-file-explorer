@@ -17,7 +17,13 @@ type Props = {
 };
 
 export const AppFolderPane: FC<Props> = ({ path, openItem, selectItem }) => {
-  const { appSettings, items } = useAppContext();
+  const { appSettings, filter, items } = useAppContext();
+
+  const filteredItems = useMemo(
+    () =>
+      filter ? items?.filter((item) => item.name.includes(filter)) : items,
+    [filter, items],
+  );
 
   const AppItemComponent = useMemo(
     () =>
@@ -37,8 +43,8 @@ export const AppFolderPane: FC<Props> = ({ path, openItem, selectItem }) => {
       <AppExplorerBreadcrumb path={path} />
 
       <div className={`items ${appSettings.viewMode}`}>
-        {!!items?.length &&
-          items.map((item) => (
+        {!!filteredItems?.length &&
+          filteredItems.map((item) => (
             <AppItemComponent
               key={item.name}
               item={item}

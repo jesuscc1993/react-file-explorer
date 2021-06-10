@@ -17,12 +17,14 @@ const defaultAppSettings: AppSettings = {
 
 type AppContextValue = {
   appSettings: AppSettings;
+  filter?: string;
   items?: FileSystemItem[];
   selectedItem?: FileSystemItem;
   addFavorite: (path: string) => void;
   removeFavorite: (path: string) => void;
   setAppSettings: (appContextState: AppSettings) => void;
   setFavorites: (paths: string[]) => void;
+  setFilter: (filter: string) => void;
   setItems: (items: FileSystemItem[]) => void;
   setSelectedItem: (item?: FileSystemItem) => void;
 };
@@ -30,12 +32,14 @@ type AppContextValue = {
 /* eslint-disable @typescript-eslint/no-empty-function */
 const AppContext = React.createContext<AppContextValue>({
   appSettings: defaultAppSettings,
+  filter: undefined,
   items: undefined,
   selectedItem: undefined,
   addFavorite: () => {},
   removeFavorite: () => {},
   setAppSettings: () => {},
   setFavorites: () => {},
+  setFilter: () => {},
   setItems: () => {},
   setSelectedItem: () => {},
 });
@@ -45,6 +49,7 @@ export const AppContextProvider: FC = ({ children }) => {
   const [appSettings, setAppSettings] = useState(
     getStorageValue(settingsKey) || defaultAppSettings,
   );
+  const [filter, setFilter] = useState('');
   const [items, setItems] = useState<FileSystemItem[]>();
   const [selectedItem, setSelectedItem] = useState<FileSystemItem>();
 
@@ -69,12 +74,14 @@ export const AppContextProvider: FC = ({ children }) => {
     <AppContext.Provider
       value={{
         appSettings,
+        filter,
         items,
         selectedItem,
         addFavorite,
         removeFavorite,
         setAppSettings: updateSettings,
         setFavorites,
+        setFilter,
         setItems,
         setSelectedItem,
       }}

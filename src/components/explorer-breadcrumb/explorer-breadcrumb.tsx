@@ -3,7 +3,7 @@ import './explorer-breadcrumb.css';
 import React, { FC } from 'react';
 import { useHistory } from 'react-router';
 
-import { directorySeparator } from '../../constants/explorer.constants';
+import { directorySeparator } from '../../constants/file-system.constants';
 
 type Props = {
   path: string;

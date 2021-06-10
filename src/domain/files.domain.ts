@@ -1,7 +1,7 @@
 import {
   audioExtensions, directorySeparator, extensionSeparator, imageExtensions, sizes, textExtensions,
   videoExtensions,
-} from '../constants/explorer.constants';
+} from '../constants/file-system.constants';
 import { FileSystemItem, FileSystemItemType } from '../types/file-system.types';
 
 export const getItemType = (item: FileSystemItem): FileSystemItemType => {

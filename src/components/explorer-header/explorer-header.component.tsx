@@ -4,7 +4,7 @@ import React, { ChangeEvent, FC, KeyboardEvent, useEffect, useState } from 'reac
 import ReactModal from 'react-modal';
 import { useHistory } from 'react-router';
 
-import { directorySeparator } from '../../constants/explorer.constants';
+import { directorySeparator } from '../../constants/file-system.constants';
 import { getSanitizedAddress } from '../../domain/os.domain';
 import { getOppositeViewMode, getViewModeIcon } from '../../domain/settings.domain';
 import { countInstancesInString } from '../../domain/strings.domain';
@@ -15,7 +15,7 @@ import { AppSettingsModal } from '../_modals/settings/settings.modal';
 export const AppExplorerHeader: FC = () => {
   const params = useQueryParams();
   const history = useHistory();
-  const { appSettings, setAppSettings } = useAppContext();
+  const { appSettings, filter, setAppSettings, setFilter } = useAppContext();
 
   const path = params.get('path') || '';
 
@@ -24,16 +24,20 @@ export const AppExplorerHeader: FC = () => {
 
   useEffect(() => setFormAddress(path), [path]);
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const onAddressChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormAddress(event.target.value);
   };
 
-  const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+  const onAddressKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       const newAddress = getSanitizedAddress(formAddress);
       setFormAddress(newAddress);
       history.push(`/explorer?path=${getSanitizedAddress(formAddress)}`);
     }
+  };
+
+  const onFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFilter(event.target.value);
   };
 
   const navigateUp = () => {
@@ -110,8 +114,15 @@ export const AppExplorerHeader: FC = () => {
       <input
         className="address-input"
         value={formAddress}
-        onChange={onChange}
-        onKeyDown={onKeyDown}
+        onChange={onAddressChange}
+        onKeyDown={onAddressKeyDown}
+      />
+
+      <input
+        className="filter-input"
+        placeholder="Filter"
+        value={filter}
+        onChange={onFilterChange}
       />
 
       <button

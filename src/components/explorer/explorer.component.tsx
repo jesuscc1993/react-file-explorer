@@ -20,7 +20,7 @@ const os = getOs();
 export const AppExplorer: FC = () => {
   const history = useHistory();
   const params = useQueryParams();
-  const { appSettings, selectedItem, setItems, setSelectedItem } =
+  const { appSettings, selectedItem, setFilter, setItems, setSelectedItem } =
     useAppContext();
 
   const path = params.get('path') || '';
@@ -28,6 +28,7 @@ export const AppExplorer: FC = () => {
   useEffect(() => {
     if (path) {
       setSelectedItem(undefined);
+      setFilter('');
       fileSystemService.getPathItems(path).pipe(tap(setItems)).subscribe();
     } else {
       openDirectory(getStartingPath(os));
