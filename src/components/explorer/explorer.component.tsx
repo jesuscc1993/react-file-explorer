@@ -4,7 +4,6 @@ import React, { FC, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { tap } from 'rxjs/operators';
 
-import { getFolderName } from '../../domain/files.domain';
 import { getOs, getStartingPath } from '../../domain/os.domain';
 import { useAppContext } from '../../hooks/use-app-context.hook';
 import { useQueryParams } from '../../hooks/use-query-params.hook';
@@ -69,7 +68,7 @@ export const AppExplorer: FC = () => {
         )}
 
         <AppFolderPane
-          name={getFolderName(path)}
+          path={path}
           openItem={openItem}
           selectItem={selectItem}
         />

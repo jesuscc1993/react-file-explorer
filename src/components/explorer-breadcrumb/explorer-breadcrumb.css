@@ -1,0 +1,11 @@
+.explorer-breadcrumb {
+  padding: var(--pane-padding);
+}
+
+.explorer-breadcrumb .clickable {
+  opacity: 0.75;
+}
+.explorer-breadcrumb .clickable:hover {
+  text-decoration: underline;
+  opacity: 1;
+}

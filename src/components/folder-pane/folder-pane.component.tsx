@@ -6,16 +6,17 @@ import { getExplorerStylesfromSettings } from '../../domain/settings.domain';
 import { useAppContext } from '../../hooks/use-app-context.hook';
 import { ExplorerViewMode } from '../../types/explorer.types';
 import { FileSystemItem } from '../../types/file-system.types';
+import { AppExplorerBreadcrumb } from '../explorer-breadcrumb/explorer-breadcrumb';
 import { AppExplorerGridItem } from '../explorer-grid-item/explorer-grid-item.component';
 import { AppExplorerListItem } from '../explorer-list-item/explorer-list-item.component';
 
 type Props = {
-  name?: string;
+  path: string;
   openItem: (item: FileSystemItem) => void;
   selectItem: (item?: FileSystemItem) => void;
 };
 
-export const AppFolderPane: FC<Props> = ({ name, openItem, selectItem }) => {
+export const AppFolderPane: FC<Props> = ({ path, openItem, selectItem }) => {
   const { appSettings, items } = useAppContext();
 
   const AppItemComponent = useMemo(
@@ -33,7 +34,7 @@ export const AppFolderPane: FC<Props> = ({ name, openItem, selectItem }) => {
 
   return (
     <div className="folder-view pane" onClick={() => selectItem()}>
-      <h4 className="pane-title">{name || '\u00A0'}</h4>
+      <AppExplorerBreadcrumb path={path} />
 
       <div className={`items ${appSettings.viewMode}`}>
         {!!items?.length &&

@@ -18,6 +18,7 @@ This project requires [node-file-explorer](https://github.com/jesuscc1993/node-f
 
 ## TODO
 
+- (Extra) Add basic text filter.
 - (Extra) Add clickable breadcrumb sections.
 - (Extra) Implement copy/paste folder/file options.
 - (Extra) Implement create/delete folder/file options.
