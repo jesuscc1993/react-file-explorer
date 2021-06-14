@@ -5,12 +5,27 @@ export enum ExplorerViewMode {
   List = 'list',
 }
 
+export enum ExplorerSortMode {
+  Accessed = 'accessTime',
+  Changed = 'changeTime',
+  Created = 'creationTime',
+  Kind = 'kind',
+  Modified = 'modificationTime',
+  Name = 'name',
+}
+
+export enum ExplorerSortDirection {
+  Asc = 1,
+  Desc = -1,
+}
+
 export type AppSettings = {
   favorites: string[];
   iconSize: number;
   labelSize: number;
   leftSidebar: boolean;
   rightSidebar: boolean;
+  sortMode: ExplorerSortMode;
   viewMode: ExplorerViewMode;
 };
 

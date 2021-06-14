@@ -3,11 +3,13 @@ import '@szhsin/react-menu/dist/index.css';
 
 import React, { FC, MouseEvent } from 'react';
 
-import { ControlledMenu, MenuDivider, MenuItem } from '@szhsin/react-menu';
+import {
+  ControlledMenu, MenuDivider, MenuItem, MenuRadioGroup, RadioChangeEvent, SubMenu,
+} from '@szhsin/react-menu';
 
 import { useAppContext } from '../../hooks/use-app-context.hook';
 import { useContextMenu } from '../../hooks/use-context-menu.hook';
-import { ExplorerStyles, ExplorerViewMode } from '../../types/explorer.types';
+import { ExplorerSortMode, ExplorerStyles, ExplorerViewMode } from '../../types/explorer.types';
 import { FileSystemItem } from '../../types/file-system.types';
 import { AppItemIcon } from '../item-icon/item-icon.component';
 
@@ -24,7 +26,13 @@ export const AppExplorerItem: FC<Props> = ({
   openItem,
   selectItem,
 }) => {
-  const { appSettings, selectedItem, addFavorite } = useAppContext();
+  const {
+    appSettings: { sortMode, viewMode },
+    selectedItem,
+    addFavorite,
+    setSortMode,
+  } = useAppContext();
+
   const {
     contextMenuAnchorPoint,
     isContextMenuOpen,
@@ -41,13 +49,13 @@ export const AppExplorerItem: FC<Props> = ({
 
   const onOpenPress = () => openItem(item);
 
+  const onSortModeChange = ({ value }: RadioChangeEvent) => setSortMode(value);
+
   const itemClass =
-    appSettings.viewMode === ExplorerViewMode.Grid ? 'grid-item' : 'list-item';
+    viewMode === ExplorerViewMode.Grid ? 'grid-item' : 'list-item';
 
   const itemStyles =
-    appSettings.viewMode === ExplorerViewMode.Grid
-      ? styles?.gridItem
-      : styles?.listItem;
+    viewMode === ExplorerViewMode.Grid ? styles?.gridItem : styles?.listItem;
 
   return (
     <>
@@ -55,7 +63,6 @@ export const AppExplorerItem: FC<Props> = ({
         className={`explorer-item item ${itemClass} ${
           item === selectedItem ? 'selected' : ''
         }`}
-        key={item.name}
         style={itemStyles?.itemWrapper}
         onContextMenu={onContextMenu}
       >
@@ -74,6 +81,17 @@ export const AppExplorerItem: FC<Props> = ({
         onClose={hideContextMenu}
       >
         <MenuItem onClick={onOpenPress}>Open</MenuItem>
+        <SubMenu label="Sort By">
+          <MenuRadioGroup value={sortMode} onChange={onSortModeChange}>
+            <MenuItem value={ExplorerSortMode.Name}>Name</MenuItem>
+            <MenuItem value={ExplorerSortMode.Kind}>Kind</MenuItem>
+            {/* <MenuDivider /> */}
+            <MenuItem value={ExplorerSortMode.Accessed}>Date accessed</MenuItem>
+            <MenuItem value={ExplorerSortMode.Changed}>Date changed</MenuItem>
+            <MenuItem value={ExplorerSortMode.Created}>Date created</MenuItem>
+            <MenuItem value={ExplorerSortMode.Modified}>Date modified</MenuItem>
+          </MenuRadioGroup>
+        </SubMenu>
         {item.isDirectory && <MenuDivider />}
         {item.isDirectory && (
           <MenuItem onClick={onFavoritePress}>Add to favorites</MenuItem>

@@ -1,5 +1,4 @@
 export const directorySeparator = '/';
-export const extensionSeparator = '.';
 
 export const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
 

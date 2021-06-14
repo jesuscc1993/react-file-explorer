@@ -3,6 +3,7 @@ export type FileSystemItem = {
   accessTime: number;
   changeTime: number;
   creationTime: number;
+  extension?: string;
   isDirectory: boolean;
   isFile: boolean;
   isSymbolicLink: boolean;

@@ -33,6 +33,8 @@ export const AppExplorer: FC = () => {
     } else {
       openDirectory(getStartingPath(os));
     }
+    // we only want to run this when path changes, so any other dependencies are unneeded
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path]);
 
   const selectItem = (item?: FileSystemItem) => {

@@ -2,6 +2,7 @@ import './folder-pane.component.css';
 
 import React, { FC, useMemo } from 'react';
 
+import { getItemsFilteredByName, getSortedItems } from '../../domain/files.domain';
 import { getExplorerStylesfromSettings } from '../../domain/settings.domain';
 import { useAppContext } from '../../hooks/use-app-context.hook';
 import { FileSystemItem } from '../../types/file-system.types';
@@ -17,10 +18,14 @@ type Props = {
 export const AppFolderPane: FC<Props> = ({ path, openItem, selectItem }) => {
   const { appSettings, filter, items } = useAppContext();
 
+  const sortedItems = useMemo(
+    () => getSortedItems(items, appSettings.sortMode),
+    [appSettings.sortMode, items],
+  );
+
   const filteredItems = useMemo(
-    () =>
-      filter ? items?.filter((item) => item.name.includes(filter)) : items,
-    [filter, items],
+    () => getItemsFilteredByName(sortedItems, filter),
+    [filter, sortedItems],
   );
 
   const styles = useMemo(

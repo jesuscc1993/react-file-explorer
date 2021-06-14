@@ -143,6 +143,21 @@ input[type='range'] {
   padding: 6px 12px;
 }
 
+#root .rc-menu__item--type-radio {
+  padding-left: 24px;
+}
+
+#root .rc-menu__item--type-radio::before {
+  content: '';
+  left: 8px;
+  top: 10px;
+  font-size: 8px;
+}
+
+#root .rc-menu__item--type-radio.rc-menu__item--checked::before {
+  content: '●';
+}
+
 #root .rc-menu__item--hover {
   background: var(--c-input-border);
 }

@@ -1,24 +1,16 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 
+import { defaultAppSettings } from '../constants/explorer.constants';
 import { settingsKey } from '../constants/storage.constants';
 import { addFavoriteToList, removeFavoriteFromList } from '../domain/settings.domain';
 import { getStorageValue, setStorageValue } from '../domain/storage.domain';
-import { AppSettings, ExplorerViewMode } from '../types/explorer.types';
+import { AppSettings, ExplorerSortMode } from '../types/explorer.types';
 import { FileSystemItem } from '../types/file-system.types';
-
-const defaultAppSettings: AppSettings = {
-  favorites: [],
-  iconSize: 128,
-  labelSize: 16,
-  leftSidebar: true,
-  rightSidebar: true,
-  viewMode: ExplorerViewMode.Grid,
-};
 
 type AppContextValue = {
   appSettings: AppSettings;
-  filter?: string;
-  items?: FileSystemItem[];
+  filter: string;
+  items: FileSystemItem[];
   selectedItem?: FileSystemItem;
   addFavorite: (path: string) => void;
   removeFavorite: (path: string) => void;
@@ -27,13 +19,14 @@ type AppContextValue = {
   setFilter: (filter: string) => void;
   setItems: (items: FileSystemItem[]) => void;
   setSelectedItem: (item?: FileSystemItem) => void;
+  setSortMode: (sortMode: ExplorerSortMode) => void;
 };
 
 /* eslint-disable @typescript-eslint/no-empty-function */
 const AppContext = React.createContext<AppContextValue>({
   appSettings: defaultAppSettings,
-  filter: undefined,
-  items: undefined,
+  filter: '',
+  items: [],
   selectedItem: undefined,
   addFavorite: () => {},
   removeFavorite: () => {},
@@ -42,6 +35,7 @@ const AppContext = React.createContext<AppContextValue>({
   setFilter: () => {},
   setItems: () => {},
   setSelectedItem: () => {},
+  setSortMode: () => {},
 });
 /* eslint-enable @typescript-eslint/no-empty-function */
 
@@ -50,7 +44,7 @@ export const AppContextProvider: FC = ({ children }) => {
     getStorageValue(settingsKey) || defaultAppSettings,
   );
   const [filter, setFilter] = useState('');
-  const [items, setItems] = useState<FileSystemItem[]>();
+  const [items, setItems] = useState<FileSystemItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<FileSystemItem>();
 
   const addFavorite = (path: string) => {
@@ -63,6 +57,10 @@ export const AppContextProvider: FC = ({ children }) => {
 
   const setFavorites = (favorites: string[]) => {
     updateSettings({ ...appSettings, favorites });
+  };
+
+  const setSortMode = (sortMode: ExplorerSortMode) => {
+    updateSettings({ ...appSettings, sortMode });
   };
 
   const updateSettings = (newAppState: AppSettings) => {
@@ -84,6 +82,7 @@ export const AppContextProvider: FC = ({ children }) => {
         setFilter,
         setItems,
         setSelectedItem,
+        setSortMode,
       }}
     >
       {children}
@@ -92,7 +91,7 @@ export const AppContextProvider: FC = ({ children }) => {
 };
 
 export const useAppContext = () => {
-  const context = React.useContext(AppContext);
+  const context = useContext(AppContext);
   if (context === undefined) {
     throw new Error('useAppContext must be used within an AppContextProvider');
   }
