@@ -18,6 +18,7 @@ This project requires [node-file-explorer](https://github.com/jesuscc1993/node-f
 
 ## TODO
 
-- (Extra) Implement copy/paste folder/file options.
-- (Extra) Implement create/delete folder/file options.
+- (Extra) Implement copy/paste item options.
+- (Extra) Implement create/delete item options.
+- (Extra) Implement rename item options.
 - (Unlikely) Implement terminal to run commands directly.
