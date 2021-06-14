@@ -4,7 +4,7 @@ import { defaultAppSettings } from '../constants/explorer.constants';
 import { settingsKey } from '../constants/storage.constants';
 import { addFavoriteToList, removeFavoriteFromList } from '../domain/settings.domain';
 import { getStorageValue, setStorageValue } from '../domain/storage.domain';
-import { AppSettings, ExplorerSortMode } from '../types/explorer.types';
+import { AppSettings, ExplorerSortMode, ExplorerViewMode } from '../types/explorer.types';
 import { FileSystemItem } from '../types/file-system.types';
 
 type AppContextValue = {
@@ -20,6 +20,7 @@ type AppContextValue = {
   setItems: (items: FileSystemItem[]) => void;
   setSelectedItem: (item?: FileSystemItem) => void;
   setSortMode: (sortMode: ExplorerSortMode) => void;
+  setViewMode: (viewMode: ExplorerViewMode) => void;
 };
 
 /* eslint-disable @typescript-eslint/no-empty-function */
@@ -36,6 +37,7 @@ const AppContext = React.createContext<AppContextValue>({
   setItems: () => {},
   setSelectedItem: () => {},
   setSortMode: () => {},
+  setViewMode: () => {},
 });
 /* eslint-enable @typescript-eslint/no-empty-function */
 
@@ -63,6 +65,10 @@ export const AppContextProvider: FC = ({ children }) => {
     updateSettings({ ...appSettings, sortMode });
   };
 
+  const setViewMode = (viewMode: ExplorerViewMode) => {
+    updateSettings({ ...appSettings, viewMode });
+  };
+
   const updateSettings = (newAppState: AppSettings) => {
     setStorageValue(settingsKey, newAppState);
     setAppSettings(newAppState);
@@ -83,6 +89,7 @@ export const AppContextProvider: FC = ({ children }) => {
         setItems,
         setSelectedItem,
         setSortMode,
+        setViewMode,
       }}
     >
       {children}

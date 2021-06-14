@@ -8,6 +8,7 @@ import {
 } from '@szhsin/react-menu';
 
 import { copyToClipboard } from '../../domain/clipboard.domain';
+import { getFileUrl } from '../../domain/files.domain';
 import { useAppContext } from '../../hooks/use-app-context.hook';
 import { useContextMenu } from '../../hooks/use-context-menu.hook';
 import { ExplorerSortMode, ExplorerStyles, ExplorerViewMode } from '../../types/explorer.types';
@@ -32,6 +33,7 @@ export const AppExplorerItem: FC<Props> = ({
     selectedItem,
     addFavorite,
     setSortMode,
+    setViewMode,
   } = useAppContext();
 
   const {
@@ -54,7 +56,13 @@ export const AppExplorerItem: FC<Props> = ({
 
   const onOpenPress = () => openItem(item);
 
+  const onNewTabOpenPress = () => {
+    window.open(getFileUrl(item));
+  };
+
   const onSortModeChange = ({ value }: RadioChangeEvent) => setSortMode(value);
+
+  const onViewModeChange = ({ value }: RadioChangeEvent) => setViewMode(value);
 
   const itemClass =
     viewMode === ExplorerViewMode.Grid ? 'grid-item' : 'list-item';
@@ -86,20 +94,36 @@ export const AppExplorerItem: FC<Props> = ({
         onClose={hideContextMenu}
       >
         <MenuItem onClick={onOpenPress}>Open</MenuItem>
-        <SubMenu label="Sort By">
+        {item.isFile && (
+          <MenuItem onClick={onNewTabOpenPress}>Open in new tab</MenuItem>
+        )}
+
+        <MenuDivider />
+
+        <SubMenu label="View as">
+          <MenuRadioGroup value={viewMode} onChange={onViewModeChange}>
+            <MenuItem value={ExplorerViewMode.Grid}>Grid</MenuItem>
+            <MenuItem value={ExplorerViewMode.List}>List</MenuItem>
+          </MenuRadioGroup>
+        </SubMenu>
+        <SubMenu label="Sort by">
           <MenuRadioGroup value={sortMode} onChange={onSortModeChange}>
             <MenuItem value={ExplorerSortMode.Name}>Name</MenuItem>
             <MenuItem className="bottom-divider" value={ExplorerSortMode.Kind}>
               Kind
             </MenuItem>
+
             {/* <MenuDivider /> */}
+
             <MenuItem value={ExplorerSortMode.Accessed}>Date accessed</MenuItem>
             <MenuItem value={ExplorerSortMode.Changed}>Date changed</MenuItem>
             <MenuItem value={ExplorerSortMode.Created}>Date created</MenuItem>
             <MenuItem value={ExplorerSortMode.Modified}>Date modified</MenuItem>
           </MenuRadioGroup>
         </SubMenu>
+
         <MenuDivider />
+
         <MenuItem onClick={onCopyPathPress}>Copy as path</MenuItem>
         {item.isDirectory && (
           <MenuItem onClick={onFavoritePress}>Add to favorites</MenuItem>

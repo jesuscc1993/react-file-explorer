@@ -15,7 +15,8 @@ import { AppSettingsModal } from '../_modals/settings/settings.modal';
 export const AppExplorerHeader: FC = () => {
   const params = useQueryParams();
   const history = useHistory();
-  const { appSettings, filter, setAppSettings, setFilter } = useAppContext();
+  const { appSettings, filter, setAppSettings, setFilter, setViewMode } =
+    useAppContext();
 
   const path = params.get('path') || '';
 
@@ -71,10 +72,7 @@ export const AppExplorerHeader: FC = () => {
   };
 
   const toggleViewMode = () => {
-    setAppSettings({
-      ...appSettings,
-      viewMode: getOppositeViewMode(appSettings.viewMode),
-    });
+    setViewMode(getOppositeViewMode(appSettings.viewMode));
   };
 
   const toggleSettingsModal = () => {
