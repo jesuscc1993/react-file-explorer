@@ -84,7 +84,9 @@ export const AppExplorerItem: FC<Props> = ({
         <SubMenu label="Sort By">
           <MenuRadioGroup value={sortMode} onChange={onSortModeChange}>
             <MenuItem value={ExplorerSortMode.Name}>Name</MenuItem>
-            <MenuItem value={ExplorerSortMode.Kind}>Kind</MenuItem>
+            <MenuItem className="bottom-divider" value={ExplorerSortMode.Kind}>
+              Kind
+            </MenuItem>
             {/* <MenuDivider /> */}
             <MenuItem value={ExplorerSortMode.Accessed}>Date accessed</MenuItem>
             <MenuItem value={ExplorerSortMode.Changed}>Date changed</MenuItem>

@@ -167,6 +167,16 @@ input[type='range'] {
   margin: 0;
 }
 
+#root .rc-menu__divider {
+  background-color: var(--c-input-border);
+  margin: 0;
+}
+
+/* workaround to MenuRadioGroup not supporting MenuDivider children: https://github.com/szhsin/react-menu/issues/165 */
+#root .rc-menu__item.bottom-divider {
+  border-bottom: 1px solid var(--c-input-border);
+}
+
 /* react-modal */
 .modal-backdrop {
   position: fixed;
