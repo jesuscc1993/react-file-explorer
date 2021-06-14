@@ -7,6 +7,7 @@ import {
   ControlledMenu, MenuDivider, MenuItem, MenuRadioGroup, RadioChangeEvent, SubMenu,
 } from '@szhsin/react-menu';
 
+import { copyToClipboard } from '../../domain/clipboard.domain';
 import { useAppContext } from '../../hooks/use-app-context.hook';
 import { useContextMenu } from '../../hooks/use-context-menu.hook';
 import { ExplorerSortMode, ExplorerStyles, ExplorerViewMode } from '../../types/explorer.types';
@@ -39,6 +40,10 @@ export const AppExplorerItem: FC<Props> = ({
     onContextMenu,
     hideContextMenu,
   } = useContextMenu();
+
+  const onCopyPathPress = () => {
+    copyToClipboard(item.absolutePath).subscribe();
+  };
 
   const onItemPress = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
@@ -94,7 +99,8 @@ export const AppExplorerItem: FC<Props> = ({
             <MenuItem value={ExplorerSortMode.Modified}>Date modified</MenuItem>
           </MenuRadioGroup>
         </SubMenu>
-        {item.isDirectory && <MenuDivider />}
+        <MenuDivider />
+        <MenuItem onClick={onCopyPathPress}>Copy as path</MenuItem>
         {item.isDirectory && (
           <MenuItem onClick={onFavoritePress}>Add to favorites</MenuItem>
         )}
