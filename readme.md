@@ -18,7 +18,7 @@ This project requires [node-file-explorer](https://github.com/jesuscc1993/node-f
 
 ## TODO
 
-- (Extra) Implement copy/paste item options.
-- (Extra) Implement create/delete item options.
-- (Extra) Implement rename item options.
+- (Extra) Implement copy/paste context menu item options.
+- (Extra) Implement create/delete item context menu options.
+- (Extra) Implement rename item context menu option.
 - (Unlikely) Implement terminal to run commands directly.
