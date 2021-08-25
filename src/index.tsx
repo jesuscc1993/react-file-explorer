@@ -3,7 +3,7 @@ import './theme-dark.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import { AppContextProvider } from './hooks/use-app-context.hook';
 import { AppExplorerPage } from './pages/explorer/explorer.page';
@@ -11,7 +11,7 @@ import { AppExplorerPage } from './pages/explorer/explorer.page';
 ReactDOM.render(
   <React.StrictMode>
     <AppContextProvider>
-      <Router>
+      <HashRouter>
         <Switch>
           <Route exact path="/">
             <Redirect to="/explorer/" />
@@ -20,7 +20,7 @@ ReactDOM.render(
             <AppExplorerPage />
           </Route>
         </Switch>
-      </Router>
+      </HashRouter>
     </AppContextProvider>
   </React.StrictMode>,
   document.getElementById('root'),
