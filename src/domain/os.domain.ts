@@ -15,7 +15,7 @@ const osStartingPaths: Record<Os, string> = {
 };
 
 export const getOs = () => {
-  return osList.find((os) => navigator.appVersion.indexOf(os) >= 0) || Os.Linux;
+  return osList.find((os) => navigator.appVersion.includes(os)) || Os.Linux;
 };
 
 export const getSanitizedAddress = (address: string) => {
@@ -28,3 +28,5 @@ export const getSanitizedAddress = (address: string) => {
 };
 
 export const getStartingPath = (os: Os) => osStartingPaths[os];
+
+export const isUnix = () => !navigator.appVersion.includes(Os.Windows);
