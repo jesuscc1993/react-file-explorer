@@ -16,8 +16,30 @@
   width: var(--preview-size);
 }
 
+.settings-modal .columns {
+  display: flex;
+}
+
+.settings-modal .columns .separator {
+  border-right: 1px solid var(--c-border);
+  margin: 0 var(--pane-padding);
+}
+
+.settings-modal .padded {
+  padding: var(--pane-padding);
+}
+
+.settings-modal .settings-column {
+  width: 256px;
+}
+
+.settings-modal .settings-column .material-icons {
+  padding: 0 2px;
+}
+
 .settings-modal .footer {
   display: flex;
+  padding-top: var(--pane-padding);
 }
 
 .settings-modal .footer > * {

@@ -11,3 +11,9 @@ export const defaultAppSettings: AppSettings = {
   sortMode: ExplorerSortMode.Kind,
   viewMode: ExplorerViewMode.Grid,
 };
+
+export const minIconSize = 16;
+export const maxIconSize = 256;
+
+export const minLabelSize = 8;
+export const maxLabelSize = 32;

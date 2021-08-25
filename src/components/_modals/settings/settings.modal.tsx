@@ -2,6 +2,9 @@ import './settings.modal.css';
 
 import React, { ChangeEvent, FC, useState } from 'react';
 
+import {
+  maxIconSize, maxLabelSize, minIconSize, minLabelSize,
+} from '../../../constants/explorer.constants';
 import { useAppContext } from '../../../hooks/use-app-context.hook';
 
 type Props = {
@@ -27,41 +30,62 @@ export const AppSettingsModal: FC<Props> = ({ onRequestClose }) => {
     onRequestClose();
   };
 
+  const iconInfoTooltip = `From ${minIconSize}px to ${maxIconSize}px`;
+  const labelInfoTooltip = `From ${minLabelSize}px to ${maxLabelSize}px`;
+
   return (
     <div className="settings-modal pane">
-      <h2 className="modal-title">Settings</h2>
+      <div className="columns">
+        <div>
+          <h2 className="modal-title">Preview</h2>
 
-      <span>Icon size [16 - 256] ({iconSize})</span>
-      <div>
-        <input
-          type="range"
-          min="16"
-          max="256"
-          value={iconSize}
-          onChange={onIconSizeChange}
-        />
-      </div>
+          <div className="icon-preview">
+            <span className="material-icons" style={{ fontSize: iconSize }}>
+              folder
+            </span>
 
-      <span>Label size [8 - 32] ({labelSize})</span>
-      <div>
-        <input
-          type="range"
-          min="8"
-          max="32"
-          value={labelSize}
-          onChange={onLabelSizeChange}
-        />
-      </div>
+            <span style={{ fontSize: labelSize }}>Label</span>
+          </div>
+        </div>
 
-      <div>
-        <h3>Preview</h3>
+        <div className="separator" />
 
-        <div className="icon-preview">
-          <span className="material-icons" style={{ fontSize: iconSize }}>
-            folder
+        <div className="settings-column">
+          <h2 className="modal-title">Settings</h2>
+
+          <span>
+            Icon size
+            <span className="material-icons" title={iconInfoTooltip}>
+              info
+            </span>{' '}
+            <span className="float-right">({iconSize}px)</span>
           </span>
+          <div>
+            <input
+              type="range"
+              min={minIconSize}
+              max={maxIconSize}
+              value={iconSize}
+              onChange={onIconSizeChange}
+            />
+          </div>
 
-          <span style={{ fontSize: labelSize }}>Label</span>
+          <span>
+            Label size
+            <span className="material-icons" title={labelInfoTooltip}>
+              info
+            </span>{' '}
+            <span className="float-right">({labelSize}px)</span>
+          </span>
+          <div>
+            <input
+              type="range"
+              min={minLabelSize}
+              max={maxLabelSize}
+              value={labelSize}
+              onChange={onLabelSizeChange}
+            />
+          </div>
         </div>
       </div>
 

@@ -83,6 +83,10 @@ input[type='range'] {
   display: flex;
 }
 
+.float-right {
+  float: right;
+}
+
 .pane {
   background: var(--c-bg);
   border: 1px solid var(--c-border);
