@@ -3,12 +3,7 @@ import './theme-dark.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
 import { AppContextProvider } from './hooks/use-app-context.hook';
 import { AppExplorerPage } from './pages/explorer/explorer.page';

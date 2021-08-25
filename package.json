@@ -39,8 +39,9 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.3.0",
     "react-scripts": "4.0.3",
-    "typescript": "^4.1.2"
+    "typescript": "^4.3.2"
   },
+  "homepage": "./",
   "license": "CC-BY-NC-SA-4.0",
   "name": "react-file-explorer",
   "prettier": {
