@@ -4,14 +4,23 @@ import '@szhsin/react-menu/dist/index.css';
 import React, { FC, MouseEvent } from 'react';
 
 import {
-  ControlledMenu, MenuDivider, MenuItem, MenuRadioGroup, RadioChangeEvent, SubMenu,
+  ControlledMenu,
+  MenuDivider,
+  MenuItem,
+  MenuRadioGroup,
+  RadioChangeEvent,
+  SubMenu,
 } from '@szhsin/react-menu';
 
 import { copyToClipboard } from '../../domain/clipboard.domain';
 import { getFileUrl } from '../../domain/files.domain';
 import { useAppContext } from '../../hooks/use-app-context.hook';
 import { useContextMenu } from '../../hooks/use-context-menu.hook';
-import { ExplorerSortMode, ExplorerStyles, ExplorerViewMode } from '../../types/explorer.types';
+import {
+  ExplorerSortMode,
+  ExplorerStyles,
+  ExplorerViewMode,
+} from '../../types/explorer.types';
 import { FileSystemItem } from '../../types/file-system.types';
 import { AppItemIcon } from '../item-icon/item-icon.component';
 
@@ -115,8 +124,6 @@ export const AppExplorerItem: FC<Props> = ({
 
             {/* <MenuDivider /> */}
 
-            <MenuItem value={ExplorerSortMode.Accessed}>Date accessed</MenuItem>
-            <MenuItem value={ExplorerSortMode.Changed}>Date changed</MenuItem>
             <MenuItem value={ExplorerSortMode.Created}>Date created</MenuItem>
             <MenuItem value={ExplorerSortMode.Modified}>Date modified</MenuItem>
           </MenuRadioGroup>

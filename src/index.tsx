@@ -25,3 +25,6 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 );
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(window as any).Neutralino.init();

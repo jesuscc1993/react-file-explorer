@@ -12,8 +12,7 @@ export const AppDetailPane: FC = () => {
 
   if (!selectedItem) return <div className="detail-view sidebar pane"></div>;
 
-  const { accessTime, changeTime, creationTime, modificationTime, name, size } =
-    selectedItem;
+  const { creationTime, modificationTime, name, size } = selectedItem;
 
   return (
     <div className="detail-view sidebar pane">
@@ -24,18 +23,6 @@ export const AppDetailPane: FC = () => {
         {!!size && <p>{getSizeFromBytes(size)}</p>}
       </div>
 
-      {!!accessTime && (
-        <p className="value-pair">
-          <span>Accessed:</span>
-          <strong>{formatDate(accessTime)}</strong>
-        </p>
-      )}
-      {!!changeTime && (
-        <p className="value-pair">
-          <span>Changed:</span>
-          <strong>{formatDate(changeTime)}</strong>
-        </p>
-      )}
       {!!creationTime && (
         <p className="value-pair">
           <span>Created:</span>

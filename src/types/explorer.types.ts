@@ -6,8 +6,6 @@ export enum ExplorerViewMode {
 }
 
 export enum ExplorerSortMode {
-  Accessed = 'accessTime',
-  Changed = 'changeTime',
   Created = 'creationTime',
   Kind = 'kind',
   Modified = 'modificationTime',

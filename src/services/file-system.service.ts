@@ -1,40 +1,63 @@
-import { PathReadOptions, PathResponseDto } from '../types/file-system.types';
-import { httpService } from './http.service';
+import '../../public/neutralino';
+
+import { forkJoin, from, Observable } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
+
+import { FileSystemItem } from '../types/file-system.types';
 
 type PathOptions = {
   hiddenFiles: boolean;
 };
 
-type FileRequestDto = {
-  path: string;
+const getStats = (path: string): Observable<Neutralino.filesystem.Stats> => {
+  return from(Neutralino.filesystem.getStats(path));
 };
 
-type PathRequestDto = {
-  path: string;
-  options?: PathReadOptions;
+const getPathItems = (
+  path: string,
+  options?: PathOptions,
+): Observable<FileSystemItem[]> => {
+  return from(Neutralino.filesystem.readDirectory(path)).pipe(
+    mergeMap((items) =>
+      forkJoin(
+        items.map(({ entry }) =>
+          getStats(entry).pipe(map((stats) => mapStats(entry, stats))),
+        ),
+      ),
+    ),
+  );
 };
 
-const getFile = (path: string) => {
-  return httpService.post<PathResponseDto>(`${getServerUrl()}/file`, {
-    path,
-  } as FileRequestDto);
+const openFile = (
+  path: string,
+): Observable<Neutralino.os.ExecCommandResult> => {
+  return from(Neutralino.os.execCommand(path));
 };
 
-const getPathItems = (path: string, options?: PathOptions) => {
-  return httpService.post<PathResponseDto>(`${getServerUrl()}/path`, {
-    options,
-    path,
-  } as PathRequestDto);
+const mapStats = (
+  path: string,
+  stats: Neutralino.filesystem.Stats,
+): FileSystemItem => {
+  let filename, extension;
+
+  let matches = path.match(/(.*\/)?(.*)/);
+  if (matches) {
+    filename = matches[1];
+    matches = filename.match(/(.*)\.(.*)/);
+
+    if (matches) extension = matches[1];
+  }
+
+  return {
+    absolutePath: path,
+    creationTime: stats.createdAt,
+    extension: extension,
+    isDirectory: stats.isDirectory,
+    isFile: stats.isFile,
+    modificationTime: stats.modifiedAt,
+    name: filename,
+    size: stats.size,
+  } as FileSystemItem;
 };
 
-const getServerUrl = () => {
-  return process.env.REACT_APP_SERVER_URL;
-};
-
-const openFile = (path: string) => {
-  return httpService.post<PathResponseDto>(`${getServerUrl()}/open-file`, {
-    path,
-  } as FileRequestDto);
-};
-
-export const fileSystemService = { getFile, getPathItems, openFile };
+export const fileSystemService = { getPathItems, openFile };
